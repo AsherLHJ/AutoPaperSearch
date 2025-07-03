@@ -6,23 +6,25 @@ include_requirements_in_prompt = True  # 是否在提示词中包含要求
 include_keywords_in_prompt = False      # 是否在提示词中包含关键词
 
 # 研究问题
-ResearchQuestion = "与Virtual Reality (VR) or Augmented Reality (AR) or Mixed Reality (MR) or Extended Reality (XR)直接相关的研究"
+ResearchQuestion = "Explore the caption / subtitle design"
 
 # 要求（对论文筛选的额外要求）
 Requirements = """
-1. 在摘要或题目中直接提及Virtual Reality (VR) 或 Augmented Reality (AR) 或 Mixed Reality (MR) 或 Extended Reality (XR)。
+1. Should conduct user study.
+2. Should display subtitle / caption.
 """
 # 示例：Requirements = "必须包含用户研究或实验评估"
 
 # 关键词（英文逗号分隔）
-Keywords = "Passthrough, video see-through, VST"
+Keywords = ""
 
 # 系统提示词 - 用于判断论文相关性
 system_prompt = """你是一个学术论文相关性判断专家。你需要判断论文是否与用户的研究问题要找的答案相关。
 
 判断标准（按照数字顺序依次判断）：
-1. 如果你判断摘要的内容与用户的研究问题的可能答案相关性很高，则相关。不进入下一步判断。否则进入下一步判断。
-2. 如果你判断摘要的内容与用户的研究问题的可能答案相关性很不高，但你判断正文极有可能包含关键词，且猜测正文与用户的研究问题相关性很高，则相关。否则不相关。
+1. 如果你判断摘要的内容与用户的研究问题的相关性很高，则相关。不进入下一步判断。否则进入下一步判断。
+2. 如果用户给出的#要求#为空，则跳过该步骤。如果你判断摘要的内容符合用户的要求，则相关。不进入下一步判断。否则进入下一步判断。
+3. 如果用户给出的#关键词#为空，则跳过该步骤。如果你判断摘要的内容与用户的研究问题的可能答案相关性很不高，但你判断正文极有可能包含关键词，且猜测正文与用户的研究问题相关性很高，则相关。否则不相关。
 
 重要说明：
 - 关键词不区分大小写

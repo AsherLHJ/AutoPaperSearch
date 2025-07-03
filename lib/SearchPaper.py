@@ -17,14 +17,14 @@ def check_paper_relevance(research_direction, keywords, requirements, paper_titl
 """
     
     # 根据配置决定是否添加要求
-    if config.include_requirements_in_prompt and requirements:
-        user_prompt += f"""#要求#：{requirements}
+    #if config.include_requirements_in_prompt and requirements:
+    user_prompt += f"""#要求#：{requirements}
 
 """
     
     # 根据配置决定是否添加关键词
-    if config.include_keywords_in_prompt:
-        user_prompt += f"""#关键词#：{keywords}
+    #if config.include_keywords_in_prompt:
+    user_prompt += f"""#关键词#：{keywords}
 
 """
     
