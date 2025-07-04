@@ -7,12 +7,15 @@ def read_bib_files():
     """
     遍历Data文件夹及其子文件夹中的bib文件，提取每篇论文的信息并存入Data.py的paper_data字典中
     """
-    # 设置Data文件夹路径 - 需要回到上一级目录
-    data_folder = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'Data')
+    # 使用config_loader中定义的DATA_FOLDER路径
+    import config_loader as config
+    data_folder = config.DATA_FOLDER
     
     # 检查Data文件夹是否存在
     if not os.path.exists(data_folder):
         utils.print_and_log(f"错误：Data文件夹不存在: {data_folder}")
+        utils.print_and_log("正在创建Data文件夹...")
+        os.makedirs(data_folder)
         return
     
     # 初始化论文计数器，用作字典索引

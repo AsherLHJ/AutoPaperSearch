@@ -5,7 +5,7 @@ from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from . import Data, SearchPaper
 from . import utils
-import config
+import config_loader as config
 import json
 
 def process_paper_batch(paper_indices, rq, keywords, requirements, api_key, thread_id, result_file_path, log_file_path, yon_log_file_path, total_papers):
@@ -88,7 +88,7 @@ def process_papers(rq, keywords, requirements, n):
     utils.reset_progress_tracking()
     
     # 确保Result文件夹存在
-    result_folder = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'Result')
+    result_folder = config.RESULT_FOLDER
     if not os.path.exists(result_folder):
         os.makedirs(result_folder)
     

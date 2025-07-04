@@ -1,5 +1,5 @@
 import os
-import config
+import config_loader as config
 from . import utils
 
 def load_api_keys_from_files():
@@ -7,8 +7,8 @@ def load_api_keys_from_files():
     从APIKey目录下读取所有txt文件中的API密钥，并更新config.API_KEYS
     每个txt文件中的API keys格式为每行一个key
     """
-    # 设置APIKey文件夹路径
-    api_key_folder = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'APIKey')
+    # 使用config中定义的APIKEY_FOLDER路径
+    api_key_folder = config.APIKEY_FOLDER
     
     # 清空现有的API_KEYS列表
     config.API_KEYS.clear()

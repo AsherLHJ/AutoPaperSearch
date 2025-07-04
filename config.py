@@ -1,9 +1,19 @@
+import os
+
 # 控制是否保存完整命令行输出的变量
 save_full_log = True
 
 # 控制是否在提示词中包含要求和关键词
 include_requirements_in_prompt = True  # 是否在提示词中包含要求
 include_keywords_in_prompt = False      # 是否在提示词中包含关键词
+
+# 文件夹路径配置
+DATA_FOLDER = os.path.join(os.path.dirname(__file__), 'Data')
+APIKEY_FOLDER = os.path.join(os.path.dirname(__file__), 'APIKey')
+RESULT_FOLDER = os.path.join(os.path.dirname(__file__), 'Result')
+
+# 界面语言设置（'zh_CN'为中文，'en_US'为英文）
+LANGUAGE = 'zh_CN'
 
 # 研究问题
 ResearchQuestion = "Explore the caption / subtitle design"
