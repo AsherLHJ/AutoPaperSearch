@@ -1,6 +1,6 @@
 from openai import OpenAI
 import time
-import config
+from . import config_loader as config
 import sys
 from . import utils
 import json

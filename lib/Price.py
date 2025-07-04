@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta
-import config
+from . import config_loader as config
 
 def is_discount_period(check_time=None):
     """判断给定时间是否在优惠时段（北京时间 00:30-08:30）"""

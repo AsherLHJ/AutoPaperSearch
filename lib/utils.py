@@ -1,9 +1,9 @@
 import threading
 import time
 from datetime import datetime, timedelta
-from . import Data
-from . import Price
-import config
+from . import data
+from . import price
+from . import config_loader as config
 
 def print_and_log(message="", thread_id=None):
     """
@@ -12,52 +12,52 @@ def print_and_log(message="", thread_id=None):
     if thread_id is not None:
         message = f"[Thread-{thread_id}] {message}"
     
-    with Data.file_write_lock:
+    with data.file_write_lock:
         print(message)
-        if config.save_full_log and Data.full_log_file:
-            Data.full_log_file.write(message + "\n")
-            Data.full_log_file.flush()  # 确保即时写入
+        if config.save_full_log and data.full_log_file:
+            data.full_log_file.write(message + "\n")
+            data.full_log_file.flush()  # 确保即时写入
 
 def progress_monitor():
     """
     每秒输出一次进度信息的监控线程
     """
-    while not Data.progress_stop_event.is_set():
+    while not data.progress_stop_event.is_set():
         time.sleep(1)  # 每秒更新一次
         
-        with Data.progress_lock:
-            if Data.processed_papers == 0:
+        with data.progress_lock:
+            if data.processed_papers == 0:
                 continue
                 
             # 计算当前进度
-            current_progress = (Data.processed_papers / Data.total_papers_to_process) * 100
+            current_progress = (data.processed_papers / data.total_papers_to_process) * 100
             
             # 计算已运行时长
-            elapsed_time = time.time() - Data.start_time
+            elapsed_time = time.time() - data.start_time
             hours_elapsed = int(elapsed_time // 3600)
             minutes_elapsed = int((elapsed_time % 3600) // 60)
             seconds_elapsed = int(elapsed_time % 60)
             
             # 计算平均单篇文章耗时（基于最近10篇）
-            if Data.processing_times:
-                avg_time_per_paper = sum(Data.processing_times) / len(Data.processing_times)
+            if data.processing_times:
+                avg_time_per_paper = sum(data.processing_times) / len(data.processing_times)
             else:
-                avg_time_per_paper = elapsed_time / Data.processed_papers
+                avg_time_per_paper = elapsed_time / data.processed_papers
             
             # 计算实际的平均处理速度（考虑并发）
             # 实际平均速度 = 已处理文章数 / 已运行时间
-            actual_papers_per_second = Data.processed_papers / elapsed_time if elapsed_time > 0 else 0
+            actual_papers_per_second = data.processed_papers / elapsed_time if elapsed_time > 0 else 0
             # 反推出考虑并发后的实际单篇耗时
             actual_time_per_paper = 1 / actual_papers_per_second if actual_papers_per_second > 0 else avg_time_per_paper
             
             # 计算预计剩余时间（考虑并行处理）
-            remaining_papers = Data.total_papers_to_process - Data.processed_papers
+            remaining_papers = data.total_papers_to_process - data.processed_papers
             # 考虑并行处理的效率：剩余时间 = 剩余文章数 * 平均处理时间 / 活跃线程数
-            if Data.active_threads > 0:
-                estimated_remaining_time = (remaining_papers * avg_time_per_paper) / Data.active_threads
+            if data.active_threads > 0:
+                estimated_remaining_time = (remaining_papers * avg_time_per_paper) / data.active_threads
             else:
                 # 如果没有活跃线程信息，使用实际的处理速率
-                papers_per_second = Data.processed_papers / elapsed_time if elapsed_time > 0 else 1
+                papers_per_second = data.processed_papers / elapsed_time if elapsed_time > 0 else 1
                 estimated_remaining_time = remaining_papers / papers_per_second if papers_per_second > 0 else 0
             
             hours_remaining = int(estimated_remaining_time // 3600)
@@ -69,29 +69,29 @@ def progress_monitor():
             formatted_completion_time = estimated_completion_time.strftime("%Y_%m_%d %H:%M:%S")
             
             # 计算Token相关信息
-            current_total_tokens = Data.token_used
-            avg_tokens_per_paper = current_total_tokens / Data.processed_papers if Data.processed_papers > 0 else 0
-            estimated_total_tokens = avg_tokens_per_paper * Data.total_papers_to_process
+            current_total_tokens = data.token_used
+            avg_tokens_per_paper = current_total_tokens / data.processed_papers if data.processed_papers > 0 else 0
+            estimated_total_tokens = avg_tokens_per_paper * data.total_papers_to_process
             
             # 计算详细的Token使用情况
-            avg_prompt_tokens = Data.prompt_tokens_used / Data.processed_papers if Data.processed_papers > 0 else 0
-            avg_completion_tokens = Data.completion_tokens_used / Data.processed_papers if Data.processed_papers > 0 else 0
+            avg_prompt_tokens = data.prompt_tokens_used / data.processed_papers if data.processed_papers > 0 else 0
+            avg_completion_tokens = data.completion_tokens_used / data.processed_papers if data.processed_papers > 0 else 0
             
             # 计算价格
             # 单篇平均价格（基于已处理的实际数据）
-            avg_price_per_paper = Price.calculate_token_price(
+            avg_price_per_paper = price.calculate_token_price(
                 avg_prompt_tokens, 
                 avg_completion_tokens,
-                Data.prompt_cache_hit_tokens_used / Data.processed_papers if Data.processed_papers > 0 else 0,
-                Data.prompt_cache_miss_tokens_used / Data.processed_papers if Data.processed_papers > 0 else 0
+                data.prompt_cache_hit_tokens_used / data.processed_papers if data.processed_papers > 0 else 0,
+                data.prompt_cache_miss_tokens_used / data.processed_papers if data.processed_papers > 0 else 0
             )
             
             # 当前总价格（基于已使用的实际token）
-            current_total_price = Price.calculate_token_price(
-                Data.prompt_tokens_used,
-                Data.completion_tokens_used,
-                Data.prompt_cache_hit_tokens_used,
-                Data.prompt_cache_miss_tokens_used
+            current_total_price = price.calculate_token_price(
+                data.prompt_tokens_used,
+                data.completion_tokens_used,
+                data.prompt_cache_hit_tokens_used,
+                data.prompt_cache_miss_tokens_used
             )
             
             # 预估总价格（考虑跨时段）
@@ -100,11 +100,11 @@ def progress_monitor():
                 tokens_per_second = current_total_tokens / elapsed_time if elapsed_time > 0 else 0
                 
                 # 计算输入token比例和缓存未命中比例
-                prompt_ratio = Data.prompt_tokens_used / current_total_tokens if current_total_tokens > 0 else 0.8
-                cache_miss_ratio = Data.prompt_cache_miss_tokens_used / Data.prompt_tokens_used if Data.prompt_tokens_used > 0 else 1.0
+                prompt_ratio = data.prompt_tokens_used / current_total_tokens if current_total_tokens > 0 else 0.8
+                cache_miss_ratio = data.prompt_cache_miss_tokens_used / data.prompt_tokens_used if data.prompt_tokens_used > 0 else 1.0
                 
                 # 计算剩余部分的预估价格（考虑跨时段）
-                remaining_price = Price.calculate_weighted_price(
+                remaining_price = price.calculate_weighted_price(
                     estimated_remaining_time,
                     tokens_per_second,
                     prompt_ratio,
@@ -114,13 +114,13 @@ def progress_monitor():
                 estimated_total_price = current_total_price + remaining_price
             else:
                 # 如果没有剩余，使用简单估算
-                estimated_total_price = avg_price_per_paper * Data.total_papers_to_process
+                estimated_total_price = avg_price_per_paper * data.total_papers_to_process
             
             # 构建进度信息
             progress_message = f"""
 ==========
-当前进度：{current_progress:.2f}% [{Data.processed_papers}/{Data.total_papers_to_process}]
-使用线程数：{Data.active_threads}
+当前进度：{current_progress:.2f}% [{data.processed_papers}/{data.total_papers_to_process}]
+使用线程数：{data.active_threads}
 -----
 [时间预估]
 平均单篇文章耗时：{actual_time_per_paper:.1f}秒
@@ -130,31 +130,31 @@ def progress_monitor():
 -----
 [Token用量]
 [单篇平均] 输入: {int(avg_prompt_tokens)} 输出: {int(avg_completion_tokens)}
-[累计] {current_total_tokens} (输入: {Data.prompt_tokens_used} 输出: {Data.completion_tokens_used})
+[累计] {current_total_tokens} (输入: {data.prompt_tokens_used} 输出: {data.completion_tokens_used})
 预计总共使用Token：{int(estimated_total_tokens)}
 -----
 [价格估算]
-单篇处理成本：{Price.format_price(avg_price_per_paper)}
-已消耗成本：{Price.format_price(current_total_price)}
-预计总成本：{Price.format_price(estimated_total_price)}
+单篇处理成本：{price.format_price(avg_price_per_paper)}
+已消耗成本：{price.format_price(current_total_price)}
+预计总成本：{price.format_price(estimated_total_price)}
 ++++++++++++++++++++
 """
             print_and_log(progress_message)
 
 def reset_progress_tracking():
     """重置进度跟踪变量"""
-    Data.processed_papers = 0
-    Data.processing_times.clear()
-    Data.start_time = time.time()
+    data.processed_papers = 0
+    data.processing_times.clear()
+    data.start_time = time.time()
     # 重置token统计
-    Data.token_used = 0
-    Data.prompt_tokens_used = 0
-    Data.completion_tokens_used = 0
-    Data.prompt_cache_hit_tokens_used = 0
-    Data.prompt_cache_miss_tokens_used = 0
+    data.token_used = 0
+    data.prompt_tokens_used = 0
+    data.completion_tokens_used = 0
+    data.prompt_cache_hit_tokens_used = 0
+    data.prompt_cache_miss_tokens_used = 0
 
 def update_progress(single_elapsed_time):
     """更新进度信息"""
-    with Data.progress_lock:
-        Data.processed_papers += 1
-        Data.processing_times.append(single_elapsed_time)
+    with data.progress_lock:
+        data.processed_papers += 1
+        data.processing_times.append(single_elapsed_time)

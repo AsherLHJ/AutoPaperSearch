@@ -1,6 +1,6 @@
 import os
 import re
-from . import Data  # 更新导入路径
+from . import data  # 更新导入路径
 from . import utils
 
 def read_bib_files():
@@ -8,7 +8,7 @@ def read_bib_files():
     遍历Data文件夹及其子文件夹中的bib文件，提取每篇论文的信息并存入Data.py的paper_data字典中
     """
     # 使用config_loader中定义的DATA_FOLDER路径
-    import config_loader as config
+    from . import config_loader as config
     data_folder = config.DATA_FOLDER
     
     # 检查Data文件夹是否存在
@@ -72,8 +72,8 @@ def read_bib_files():
                     abstract_match = re.search(r'abstract\s*=\s*\{([^\}]*)\}', entry)
                     abstract = abstract_match.group(1) if abstract_match else "摘要未知"
                     
-                    # 将论文信息存入Data.paper_data字典
-                    Data.paper_data[paper_index] = {
+                    # 将论文信息存入data.paper_data字典
+                    data.paper_data[paper_index] = {
                         'title': title,
                         'abstract': abstract,
                         'entry': entry,
@@ -92,4 +92,4 @@ def read_bib_files():
     utils.print_and_log(f"\n读取完成！")
     utils.print_and_log(f"共处理 {total_folders} 个文件夹")
     utils.print_and_log(f"共读取 {total_files} 个.bib文件")
-    utils.print_and_log(f"共提取 {len(Data.paper_data)} 篇论文")
+    utils.print_and_log(f"共提取 {len(data.paper_data)} 篇论文")

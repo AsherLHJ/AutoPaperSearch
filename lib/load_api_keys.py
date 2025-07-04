@@ -1,5 +1,5 @@
 import os
-import config_loader as config
+from . import config_loader as config
 from . import utils
 
 def load_api_keys_from_files():
