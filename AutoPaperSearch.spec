@@ -9,10 +9,30 @@ a = Analysis(
     datas=[
         ('config.json', '.'),  # 配置文件
         ('language/', 'language/'),   # 语言文件夹
-        ('lib/*.py', 'lib/'),   # lib目录下的所有Python文件
+        ('lib/', 'lib/'),   # lib目录及其所有子目录
         ('icon/icon.ico', 'icon/'),  # 图标文件
     ],
-    hiddenimports=['openai'],  # 根据install_requirements.py中的依赖
+    hiddenimports=[
+        'openai',
+        'tkinter',
+        'tkinter.ttk',
+        'tkinter.filedialog',
+        'tkinter.messagebox',
+        'json',
+        'threading',
+        'concurrent.futures',
+        'requests',
+        'bibtexparser',
+        'language',
+        'language.language',
+        'lib.config.config_loader',
+        'lib.load_data.load_api_keys',
+        'lib.load_data.load_paper',
+        'lib.process.paper_processor',
+        'lib.ui.ui',
+        'lib.log.utils',
+        'lib.price.price'
+    ],  # 根据项目依赖添加隐藏导入
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],

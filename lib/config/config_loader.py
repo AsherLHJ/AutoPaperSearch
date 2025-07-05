@@ -1,8 +1,9 @@
 import json
 import os
+from language import language
 
 # 配置文件路径
-CONFIG_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'config.json')
+CONFIG_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'config.json')
 
 # 全局变量，用于存储配置
 save_full_log = True
@@ -11,7 +12,13 @@ include_keywords_in_prompt = False
 DATA_FOLDER = ''
 APIKEY_FOLDER = ''
 RESULT_FOLDER = ''
+LOG_FOLDER = ''
 LANGUAGE = 'zh_CN'
+DARK_MODE = False  # 主题设置，False为亮色主题，True为暗色主题
+# 年份范围设置
+YEAR_RANGE_START = 2000  # 起始年份
+YEAR_RANGE_END = 2025    # 结束年份
+INCLUDE_ALL_YEARS = True  # 是否包含所有年份（包括不带年份的文件）
 ResearchQuestion = ''
 Requirements = ''
 Keywords = ''
@@ -27,7 +34,8 @@ API_KEYS = []
 def load_config():
     """加载配置文件"""
     global save_full_log, include_requirements_in_prompt, include_keywords_in_prompt
-    global DATA_FOLDER, APIKEY_FOLDER, RESULT_FOLDER, LANGUAGE
+    global DATA_FOLDER, APIKEY_FOLDER, RESULT_FOLDER, LOG_FOLDER, LANGUAGE, DARK_MODE
+    global YEAR_RANGE_START, YEAR_RANGE_END, INCLUDE_ALL_YEARS
     global ResearchQuestion, Requirements, Keywords, system_prompt
     global deepseek_chat_standard_prices, deepseek_chat_discount_prices
     global deepseek_reasoner_standard_prices, deepseek_reasoner_discount_prices
@@ -43,12 +51,21 @@ def load_config():
         include_keywords_in_prompt = config.get('include_keywords_in_prompt', False)
         
         # 加载文件夹路径
-        DATA_FOLDER = config.get('DATA_FOLDER', os.path.join(os.path.dirname(__file__), 'Data'))
-        APIKEY_FOLDER = config.get('APIKEY_FOLDER', os.path.join(os.path.dirname(__file__), 'APIKey'))
-        RESULT_FOLDER = config.get('RESULT_FOLDER', os.path.join(os.path.dirname(__file__), 'Result'))
+        DATA_FOLDER = config.get('DATA_FOLDER', os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'Data'))
+        APIKEY_FOLDER = config.get('APIKEY_FOLDER', os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'APIKey'))
+        RESULT_FOLDER = config.get('RESULT_FOLDER', os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'Result'))
+        LOG_FOLDER = config.get('LOG_FOLDER', os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'Log'))
         
         # 加载语言设置
         LANGUAGE = config.get('LANGUAGE', 'zh_CN')
+        
+        # 加载主题设置
+        DARK_MODE = config.get('DARK_MODE', False)
+        
+        # 加载年份范围设置
+        YEAR_RANGE_START = config.get('YEAR_RANGE_START', 2000)
+        YEAR_RANGE_END = config.get('YEAR_RANGE_END', 2025)
+        INCLUDE_ALL_YEARS = config.get('INCLUDE_ALL_YEARS', True)
         
         # 加载研究问题和关键词
         ResearchQuestion = config.get('ResearchQuestion', '')
@@ -88,10 +105,12 @@ def load_config():
         api_base_url = config.get('api_base_url', 'https://api.deepseek.com')
         API_KEYS = config.get('API_KEYS', [])
         
-        print(f"配置文件加载成功: {CONFIG_FILE}")
+        lang = language.get_text(LANGUAGE)
+        print(lang['config_load_success'].format(file=CONFIG_FILE))
     except Exception as e:
-        print(f"加载配置文件失败: {e}")
-        print("使用默认配置")
+        lang = language.get_text(LANGUAGE)
+        print(lang['config_load_failed'].format(error=e))
+        print(lang['using_default_config'])
 
 def save_config():
     """保存配置到文件"""
@@ -102,7 +121,12 @@ def save_config():
         'DATA_FOLDER': DATA_FOLDER,
         'APIKEY_FOLDER': APIKEY_FOLDER,
         'RESULT_FOLDER': RESULT_FOLDER,
+        'LOG_FOLDER': LOG_FOLDER,
         'LANGUAGE': LANGUAGE,
+        'DARK_MODE': DARK_MODE,
+        'YEAR_RANGE_START': YEAR_RANGE_START,
+        'YEAR_RANGE_END': YEAR_RANGE_END,
+        'INCLUDE_ALL_YEARS': INCLUDE_ALL_YEARS,
         'ResearchQuestion': ResearchQuestion,
         'Requirements': Requirements,
         'Keywords': Keywords,
@@ -118,9 +142,11 @@ def save_config():
     try:
         with open(CONFIG_FILE, 'w', encoding='utf-8') as f:
             json.dump(config, f, ensure_ascii=False, indent=4)
-        print(f"配置已保存到: {CONFIG_FILE}")
+        lang = language.get_text(LANGUAGE)
+        print(lang['config_save_success'].format(file=CONFIG_FILE))
     except Exception as e:
-        print(f"保存配置文件失败: {e}")
+        lang = language.get_text(LANGUAGE)
+        print(lang['config_save_failed'].format(error=e))
 
 # 初始加载配置
 load_config()
