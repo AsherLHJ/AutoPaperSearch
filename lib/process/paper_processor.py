@@ -8,6 +8,7 @@ from . import search_paper
 from ..log import utils
 from ..config import config_loader as config
 import json
+from language import language
 
 def process_paper_batch(paper_indices, rq, keywords, requirements, api_key, thread_id, result_file_path, log_file_path, yon_log_file_path, total_papers):
     """
@@ -81,12 +82,15 @@ def process_paper_batch(paper_indices, rq, keywords, requirements, api_key, thre
     
     return relevant_count, batch_tokens
 
-def process_papers(rq, keywords, requirements, n):
+def process_papers(rq, keywords, requirements, n, selected_folders=None, year_range_info=None):
     """
     处理paper_data中的文章，将相关的文章保存到结果文件中
     """
     # 重置进度跟踪变量
     utils.reset_progress_tracking()
+    
+    # 获取语言文本
+    lang = language.get_text(config.LANGUAGE)
     
     # 确保Result文件夹存在
     result_folder = config.RESULT_FOLDER
@@ -101,6 +105,7 @@ def process_papers(rq, keywords, requirements, n):
     
     # 生成带时间戳的结果文件名
     timestamp = datetime.now().strftime("%Y%m%d_%H%M")
+    query_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     data.result_file_name = f"Result_{timestamp}"
     result_file_path = os.path.join(result_folder, f"{data.result_file_name}.bib")
     
@@ -110,28 +115,53 @@ def process_papers(rq, keywords, requirements, n):
     # 创建Y/N判断结果日志文件路径
     yon_log_file_path = os.path.join(log_folder, f"Log_YoN_{timestamp}.txt")
     
+    # 准备查询信息
+    folder_info = ", ".join(selected_folders) if selected_folders else "All folders"
+    year_info = year_range_info if year_range_info else "All years"
+    
     # 如果启用完整日志，创建完整日志文件
     if config.save_full_log:
         full_log_file_path = os.path.join(log_folder, f"Log_ALL_{timestamp}.txt")
         data.full_log_file = open(full_log_file_path, 'w', encoding='utf-8')
+        # 在完整日志文件开头写入详细的查询信息
+        data.full_log_file.write(f"// Query Time: {query_time}\n")
+        data.full_log_file.write(f"// Selected Folders: {folder_info}\n")
+        data.full_log_file.write(f"// Year Range: {year_info}\n")
+        data.full_log_file.write(f"// Research Question: {rq}\n")
+        data.full_log_file.write(f"// Keywords: {keywords}\n")
+        if requirements:
+            data.full_log_file.write(f"// Requirements: {requirements}\n")
+        data.full_log_file.write("\n")
         utils.print_and_log(f"{lang['full_log_created'].format(path=full_log_file_path)}")
     
-    # 在结果文件开头写入搜索主题
+    # 在结果文件开头写入详细的查询信息
     with open(result_file_path, 'w', encoding='utf-8') as result_file:
-        result_file.write(f"Search Topic {{{rq}}}\n\n")
+        result_file.write(f"% Query Time: {query_time}\n")
+        result_file.write(f"% Selected Folders: {folder_info}\n")
+        result_file.write(f"% Year Range: {year_info}\n")
+        result_file.write(f"% Research Question: {rq}\n")
+        result_file.write(f"% Keywords: {keywords}\n")
+        if requirements:
+            result_file.write(f"% Requirements: {requirements}\n")
+        result_file.write(f"\n% Search Topic {{{rq}}}\n\n")
     
-    # 在日志文件开头写入搜索主题、关键词和要求
+    # 在日志文件开头写入详细的查询信息
     with open(log_file_path, 'w', encoding='utf-8') as log_file:
-        # 写入注释形式的头部信息
-        log_file.write(f"// Search Topic: {rq}\n")
+        log_file.write(f"// Query Time: {query_time}\n")
+        log_file.write(f"// Selected Folders: {folder_info}\n")
+        log_file.write(f"// Year Range: {year_info}\n")
+        log_file.write(f"// Research Question: {rq}\n")
         log_file.write(f"// Keywords: {keywords}\n")
         if requirements:
             log_file.write(f"// Requirements: {requirements}\n")
         log_file.write("\n")
     
-    # 在Y/N日志文件开头写入搜索信息
+    # 在Y/N日志文件开头写入详细的查询信息
     with open(yon_log_file_path, 'w', encoding='utf-8') as yon_log_file:
-        yon_log_file.write(f"// Search Topic: {rq}\n")
+        yon_log_file.write(f"// Query Time: {query_time}\n")
+        yon_log_file.write(f"// Selected Folders: {folder_info}\n")
+        yon_log_file.write(f"// Year Range: {year_info}\n")
+        yon_log_file.write(f"// Research Question: {rq}\n")
         yon_log_file.write(f"// Keywords: {keywords}\n")
         if requirements:
             yon_log_file.write(f"// Requirements: {requirements}\n")
@@ -147,10 +177,6 @@ def process_papers(rq, keywords, requirements, n):
         max_papers = min(n, paper_count)
     
     data.total_papers_to_process = max_papers
-    
-    # 导入语言模块
-    from language import language
-    lang = language.get_text(config.LANGUAGE)
     
     utils.print_and_log(f"\n{lang['start_processing_papers'].format(count=max_papers)}")
     utils.print_and_log(f"{lang['total_papers'].format(count=paper_count)}")
@@ -238,7 +264,7 @@ def process_papers(rq, keywords, requirements, n):
     average_time_per_paper = 1 / actual_papers_per_second if actual_papers_per_second > 0 else 0
     
     # 计算最终价格
-    from .price import price
+    from ..price import price
     final_price = price.calculate_token_price(
         data.prompt_tokens_used,
         data.completion_tokens_used,

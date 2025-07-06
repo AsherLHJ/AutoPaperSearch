@@ -1096,7 +1096,13 @@ class App(tk.Tk):
                 self.log_message(self.lang["check_data_folder"])
                 return
 
-            process_papers(config.ResearchQuestion, config.Keywords, config.Requirements, -1)
+            # 获取选中的文件夹列表
+            selected_folders = [folder for folder, var in self.folder_vars.items() if var.get()]
+            
+            # 获取年份范围信息
+            year_range_info = self.get_year_range_info_text()
+
+            process_papers(config.ResearchQuestion, config.Keywords, config.Requirements, -1, selected_folders, year_range_info)
             self.log_message(self.lang["processing_complete"])
         except Exception as e:
             self.log_message(f"{self.lang['error_occurred']} {e}")

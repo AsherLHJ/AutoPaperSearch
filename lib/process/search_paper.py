@@ -10,8 +10,14 @@ def check_paper_relevance(research_direction, keywords, requirements, paper_titl
     # 记录API调用开始时间
     api_start_time = time.time()
     
-    # 从config导入系统提示词
-    system_prompt = config.system_prompt
+    # 从config导入系统提示词并根据当前语言设置填充占位符
+    lang_text = language.get_text(config.LANGUAGE)
+    if config.LANGUAGE == 'en_US':
+        language_name = "English"
+    else:
+        language_name = "中文"
+    
+    system_prompt = config.system_prompt.replace("{language}", language_name)
     
     # 构建user_prompt，根据配置决定是否包含关键词和要求
     user_prompt = f"""#研究主题#：{research_direction}
