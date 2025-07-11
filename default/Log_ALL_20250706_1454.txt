@@ -1,0 +1,15 @@
+// Query Time: 2025-07-06 14:54:56
+// Selected Folders: TestFolder1, TestFolder2
+// Year Range: 2020-2024年份范围
+// Research Question: Test Research Question
+// Keywords: test keywords
+// Requirements: test requirements
+
+完整日志文件已创建: default\Log_ALL_20250706_1454.txt
+
+开始处理1篇文章的相关性...
+文章总数: 1
+系统最多可配置的并行数: 1
+实际使用线程数: 1, 平均每线程处理: 1.0篇
+
+线程1发生错误: 'entry'

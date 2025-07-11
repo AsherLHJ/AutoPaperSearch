@@ -39,14 +39,17 @@ sk-yyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy
 
 ### 4. 配置研究主题
 
-编辑 `config.py` 文件，设置您的研究问题和关键词：
+您可以通过以下两种方式之一配置研究主题：
 
-```python
-# 研究问题
-ResearchQuestion = "您的研究主题描述"
+1. **通过程序界面**：启动程序后，直接在界面中填写研究问题和关键词。
 
-# 关键词（英文逗号分隔）
-Keywords = "关键词1, 关键词2, 关键词3"
+2. **编辑配置文件**：编辑 `config.json` 文件，设置您的研究问题和关键词：
+
+```json
+{
+    "ResearchQuestion": "您的研究主题描述",
+    "Keywords": "关键词1, 关键词2, 关键词3"
+}
 ```
 
 ### 5. 运行程序
@@ -65,28 +68,38 @@ SearchPaper/
 ├── Log/             # 处理日志
 ├── lib/             # 核心功能模块
 ├── Main.py          # 主程序入口
-├── config.py        # 配置文件
+├── config.json      # 配置文件（JSON格式）
+├── config_loader.py # 配置加载器
 ├── install_requirements.py  # 一键安装脚本
 └── README.md        # 本文档
 ```
 
 ## 配置说明
 
-### config.py 主要配置项
+### config.json 主要配置项
 
 1. **研究主题设置**
    - `ResearchQuestion`: 研究问题的详细描述
    - `Keywords`: 相关关键词，用英文逗号分隔
+   - `Requirements`: 额外的筛选要求
 
 2. **API 设置**
    - `model_name`: 使用的模型名称（默认：deepseek-chat）
    - `api_base_url`: API 服务地址
 
 3. **日志设置**
-   - `save_full_log`: 是否保存完整的命令行输出（默认：True）
+   - `save_full_log`: 是否保存完整的命令行输出（默认：true）
 
 4. **判断标准**
    - `system_prompt`: AI 判断相关性的具体规则（可自定义）
+   
+5. **文件夹设置**
+   - `DATA_FOLDER`: 数据文件夹路径
+   - `APIKEY_FOLDER`: API密钥文件夹路径
+   - `RESULT_FOLDER`: 结果文件夹路径
+   
+6. **界面设置**
+   - `LANGUAGE`: 界面语言（'zh_CN'为中文，'en_US'为英文）
 
 ## 输出结果
 
@@ -124,7 +137,7 @@ SearchPaper/
 A: 增加更多的 API Key。程序会自动根据 Key 数量创建并行线程。
 
 ### Q: 如何修改相关性判断标准？
-A: 编辑 `config.py` 中的 `system_prompt`，可以自定义判断规则。
+A: 编辑 `config.json` 中的 `system_prompt` 字段，可以自定义判断规则。
 
 ### Q: 程序中断后如何继续？
 A: 目前不支持断点续传，需要重新运行。建议分批处理大量论文。

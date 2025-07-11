@@ -1,0 +1,40 @@
+{
+    "save_full_log": true,
+    "include_requirements_in_prompt": true,
+    "include_keywords_in_prompt": false,
+    "DATA_FOLDER": "default",
+    "APIKEY_FOLDER": "default",
+    "RESULT_FOLDER": "default",
+    "LOG_FOLDER": "default",
+    "LANGUAGE": "zh_CN",
+    "DARK_MODE": false,
+    "YEAR_RANGE_START": 2020,
+    "YEAR_RANGE_END": 2025,
+    "INCLUDE_ALL_YEARS": true,
+    "ResearchQuestion": "Text Correction in XR (VR, AR, MR) platforms.",
+    "Requirements": "1. Must have user study.\n2. Must do the text correction task.\n3. For the user experiment, must using XR devices, include VR, AR, MR devices.",
+    "Keywords": "",
+    "system_prompt": "你是一个学术论文相关性判断专家。你需要判断论文是否与用户的研究问题要找的答案相关。\n\n判断标准（按照数字顺序依次判断）：\n1. 如果你判断摘要的内容与用户的研究问题的相关性很高，则相关。不进入下一步判断。否则进入下一步判断。\n2. 如果用户给出的#要求#为空，则跳过该步骤。如果你判断摘要的内容符合用户的要求，则相关。不进入下一步判断。否则进入下一步判断。\n3. 如果用户给出的#关键词#为空，则跳过该步骤。如果你判断摘索的内容与用户的研究问题的可能答案相关性很不高，但你判断正文极有可能包含关键词，且猜测正文与用户的研究问题相关性很高，则相关。否则不相关。\n\n重要说明：\n- 关键词不区分大小写\n- 注意同义词、缩写词的匹配\n\n你必须以JSON格式输出判断结果。\n\n输出格式示例（相关）：\n{\n    \"relevant\": \"Y\",\n    \"reason\": \"论文探讨了VST技术在混合现实应用中的使用\"\n}\n\n输出格式示例（不相关）：\n{\n    \"relevant\": \"N\", \n    \"reason\": \"论文仅涉及OST技术，未提及VST或视频透视技术\"\n}\n\n注意：relevant字段只能是\"Y\"或\"N\"，reason字段必须是一句简短精炼的理由，reason的语言必须是{language}。\n",
+    "deepseek_chat_standard_prices": {
+        "input_cache_hit": 0.5,
+        "input_cache_miss": 2.0,
+        "output": 8.0
+    },
+    "deepseek_chat_discount_prices": {
+        "input_cache_hit": 0.25,
+        "input_cache_miss": 1.0,
+        "output": 4.0
+    },
+    "deepseek_reasoner_standard_prices": {
+        "input_cache_hit": 1.0,
+        "input_cache_miss": 4.0,
+        "output": 16.0
+    },
+    "deepseek_reasoner_discount_prices": {
+        "input_cache_hit": 0.25,
+        "input_cache_miss": 1.0,
+        "output": 4.0
+    },
+    "model_name": "deepseek-chat",
+    "api_base_url": "https://api.deepseek.com"
+}

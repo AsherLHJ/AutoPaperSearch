@@ -44,7 +44,7 @@ def install_requirements():
     print("\n下一步：")
     print("1. 在 APIKey 文件夹中创建 .txt 文件，每行添加一个API密钥")
     print("2. 在 Data 文件夹中放入要处理的 .bib 文件")
-    print("3. 修改 config.py 中的研究问题和关键词")
+    print("3. 修改 config.json 中的研究问题和关键词（或通过程序界面修改）")
     print("4. 运行 python Main.py 开始处理论文")
 
 if __name__ == "__main__":
