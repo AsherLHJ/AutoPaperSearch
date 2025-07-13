@@ -31,7 +31,8 @@ a = Analysis(
         'lib.process.paper_processor',
         'lib.ui.ui',
         'lib.log.utils',
-        'lib.price.price'
+        'lib.price.price',
+        'lib.tools.txt_to_bib_converter'
     ],  # 根据项目依赖添加隐藏导入
     hookspath=[],
     hooksconfig={},
