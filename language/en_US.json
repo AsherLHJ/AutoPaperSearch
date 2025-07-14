@@ -76,6 +76,7 @@
     "main_tab": "Main Settings",
     "folder_tab": "Folder Settings",
     "language_tab": "Language Settings",
+    "tools_tab": "Tools",
     "language_label": "Interface Language:",
     "language_zh": "中文",
     "language_en": "English",

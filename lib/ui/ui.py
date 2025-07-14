@@ -6,6 +6,7 @@ from ..process import data
 from ..load_data import load_paper
 from ..process.paper_processor import process_papers
 from ..load_data.load_api_keys import load_api_keys_from_files, print_loaded_keys
+from ..tools.txt_to_bib_converter import TxtToBibConverter
 import threading
 import sys
 import os
@@ -181,6 +182,10 @@ class App(tk.Tk):
         self.language_tab = ttk.Frame(self.tab_control, style="Tab.TFrame")
         self.tab_control.add(self.language_tab, text=self.lang["language_tab"])
         
+        # 创建工具选项卡
+        self.tools_tab = ttk.Frame(self.tab_control, style="Tab.TFrame")
+        self.tab_control.add(self.tools_tab, text=self.lang.get("tools_tab", "工具"))
+        
         self.tab_control.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
 
         # 在主设置选项卡中创建控件
@@ -195,6 +200,9 @@ class App(tk.Tk):
         
         # 在语言设置选项卡中创建控件
         self.setup_language_tab()
+        
+        # 在工具选项卡中创建控件
+        self.setup_tools_tab()
 
         # --- Controls --- 
         self.setup_controls(controls_frame)
@@ -1282,6 +1290,90 @@ class App(tk.Tk):
         language_combo['values'] = ('zh_CN', 'en_US')
         language_combo.pack(side=tk.LEFT)
         language_combo.bind('<<ComboboxSelected>>', self.change_language)
+    
+    def setup_tools_tab(self):
+        """设置工具选项卡"""
+        frame = ttk.Frame(self.tools_tab, padding="15", style="Tab.TFrame")
+        frame.pack(fill=tk.BOTH, expand=True, padx=15, pady=15)
+        
+        # TXT到BibTeX转换工具
+        converter_frame = ttk.LabelFrame(frame, text="知网TXT文献格式转换工具", padding="15", style="Config.TLabelframe")
+        converter_frame.pack(fill=tk.X, pady=(0, 10))
+        
+        # 源文件夹选择
+        source_frame = ttk.Frame(converter_frame, style="Tab.TFrame")
+        source_frame.pack(fill=tk.X, pady=5)
+        
+        ttk.Label(source_frame, text="源文件夹:", style="TLabel").pack(side=tk.LEFT, padx=(0, 10))
+        
+        self.txt_source_var = tk.StringVar()
+        source_entry = ttk.Entry(source_frame, textvariable=self.txt_source_var, width=40, style="TEntry")
+        source_entry.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(0, 10))
+        
+        source_browse_btn = ttk.Button(source_frame, text="浏览", 
+                                      command=self.browse_txt_source_folder,
+                                      style="TButton")
+        source_browse_btn.pack(side=tk.LEFT, padx=(0, 10))
+        
+        # 目标文件夹选择
+        target_frame = ttk.Frame(converter_frame, style="Tab.TFrame")
+        target_frame.pack(fill=tk.X, pady=5)
+        
+        ttk.Label(target_frame, text="目标文件夹:", style="TLabel").pack(side=tk.LEFT, padx=(0, 10))
+        
+        self.txt_target_var = tk.StringVar()
+        target_entry = ttk.Entry(target_frame, textvariable=self.txt_target_var, width=40, style="TEntry")
+        target_entry.pack(side=tk.LEFT, fill=tk.X, expand=True, padx=(0, 10))
+        
+        target_browse_btn = ttk.Button(target_frame, text="浏览", 
+                                      command=self.browse_txt_target_folder,
+                                      style="TButton")
+        target_browse_btn.pack(side=tk.LEFT, padx=(0, 10))
+        
+        # 转换按钮
+        convert_btn = ttk.Button(target_frame, text="开始转换", 
+                                command=self.start_txt_conversion,
+                                style="Start.TButton")
+        convert_btn.pack(side=tk.RIGHT)
+    
+    def browse_txt_source_folder(self):
+        """浏览源文件夹"""
+        folder_path = filedialog.askdirectory(title="选择包含TXT文件的源文件夹")
+        if folder_path:
+            self.txt_source_var.set(folder_path)
+    
+    def browse_txt_target_folder(self):
+        """浏览目标文件夹"""
+        folder_path = filedialog.askdirectory(title="选择转换后BibTeX文件的保存文件夹")
+        if folder_path:
+            self.txt_target_var.set(folder_path)
+    
+    def start_txt_conversion(self):
+        """开始TXT到BibTeX转换"""
+        source_dir = self.txt_source_var.get().strip()
+        target_dir = self.txt_target_var.get().strip()
+        
+        if not source_dir:
+            messagebox.showerror("错误", "请选择源文件夹")
+            return
+        
+        if not target_dir:
+            messagebox.showerror("错误", "请选择目标文件夹")
+            return
+        
+        if not os.path.exists(source_dir):
+            messagebox.showerror("错误", "源文件夹不存在")
+            return
+        
+        try:
+            converter = TxtToBibConverter()
+            self.log_message(f"开始转换: {source_dir} -> {target_dir}")
+            converter.convert_directory(source_dir, target_dir)
+            messagebox.showinfo("完成", "TXT文件转换完成！")
+        except Exception as e:
+            error_msg = f"转换过程中出现错误: {str(e)}"
+            self.log_message(error_msg)
+            messagebox.showerror("错误", error_msg)
 
 if __name__ == "__main__":
     app = App()
