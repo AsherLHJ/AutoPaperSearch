@@ -1,0 +1,36 @@
+// Search Topic: Explore the text display design in VR multiplayer conversations scenario.
+// Keywords: 
+// Requirements: 
+1. Should use VR devices.
+2. Should conduct user study.
+3. Should display text / caption.
+
+
+{
+    "title": "Since U Been Gone: Augmenting Context-Aware Transcriptions for Re-Engaging in Immersive VR Meetings",
+    "reason": "相关原因：论文探讨了VR设备中的文本显示设计，并进行了用户研究，符合用户的研究主题和要求"
+}
+{
+    "title": "FanPad: A Fan Layout Touchpad Keyboard for Text Entry in VR",
+    "reason": "相关原因：论文探讨了VR设备中的文本输入设计，并进行了用户研究，符合研究主题和要求"
+}
+{
+    "title": "Reading in VR: The Effect of Text Presentation Type and Location",
+    "reason": "相关原因：论文探讨了VR中的文本显示设计，并进行了用户研究，符合研究主题和要求"
+}
+{
+    "title": "Investigating Representation of Text and Audio in Educational VR using Learning Outcomes and EEG",
+    "reason": "相关原因：论文探讨了VR中文本显示设计的影响，并进行了用户研究"
+}
+{
+    "title": "Reading on 3D Surfaces in Virtual Environments",
+    "reason": "相关原因：论文探讨了VR环境中的文本显示设计，并进行了用户研究，符合研究主题和要求"
+}
+{
+    "title": "VRCaptions: Design Captions for DHH Users in Multiplayer Communication in VR",
+    "reason": "相关原因：论文探讨了VR多人对话场景中的文本显示设计，并进行了用户研究"
+}
+{
+    "title": "Bridging the Virtual and Real Worlds: A Preliminary Study of Messaging Notifications in Virtual Reality",
+    "reason": "相关原因：论文探讨了VR设备中的消息通知显示设计，并进行了用户研究"
+}

@@ -1,0 +1,115 @@
+// Search Topic: Explore the caption / subtitle design
+// Keywords: 
+// Requirements: 
+1. Should conduct user study.
+2. Should display subtitle / caption.
+
+
+{
+    "title": "Automatic Annotation Synchronizing with Textual Description for Visualization",
+    "reason": "相关原因：论文探讨了自动注释可视化与文本描述同步的技术，并通过用户研究展示了其效用和可用性"
+}
+{
+    "title": "Close to the Action: Eye-Tracking Evaluation of Speaker-Following Subtitles",
+    "reason": "相关原因：论文探讨了字幕设计并进行了用户研究，符合用户的要求"
+}
+{
+    "title": "A View on the Viewer: Gaze-Adaptive Captions for Videos",
+    "reason": "相关原因：论文探讨了字幕设计，并进行了用户研究，符合用户的研究要求"
+}
+{
+    "title": "Tactile Emotions: Multimodal Affective Captioning with Haptics Improves Narrative Engagement for d/Deaf and Hard-of-Hearing Viewers",
+    "reason": "相关原因：论文探讨了字幕设计的多模态方法，并进行了用户研究"
+}
+{
+    "title": "OptiSub: Optimizing Video Subtitle Presentation for Varied Display and Font Sizes via Speech Pause-Driven Chunking",
+    "reason": "相关原因：论文探讨了字幕设计优化，并进行了用户研究"
+}
+{
+    "title": "Communication, Collaboration, and Coordination in a Co-located Shared Augmented Reality Game: Perspectives From Deaf and Hard of Hearing People",
+    "reason": "相关原因：论文探讨了在共享增强现实环境中为聋人和听力障碍人士设计的字幕和视觉提示，并进行了用户研究"
+}
+{
+    "title": "Watch It, Don’t Imagine It: Creating a Better Caption-Occlusion Metric by Collecting More Ecologically Valid Judgments from DHH Viewers",
+    "reason": "相关原因：论文探讨了字幕设计对聋人和听力障碍观众的影响，并进行了用户研究"
+}
+{
+    "title": "SpeechCompass: Enhancing Mobile Captioning with Diarization and Directional Guidance via Multi-Microphone Localization",
+    "reason": "相关原因：论文探讨了字幕设计中的方向性引导，并进行了用户研究"
+}
+{
+    "title": "Remotely Co-Designing Features for Communication Applications using Automatic Captioning with Deaf and Hearing Pairs",
+    "reason": "相关原因：论文探讨了自动字幕在通信应用中的设计，并进行了用户研究"
+}
+{
+    "title": "Labeling Synthetic Content: User Perceptions of Label Designs for AI-Generated Content on Social Media",
+    "reason": "相关原因：论文探讨了标签设计在社交媒体上的用户感知，并进行了用户研究"
+}
+{
+    "title": "How Users Experience Closed Captions on Live Television: Quality Metrics Remain a Challenge",
+    "reason": "相关原因：论文探讨了字幕设计对用户体验的影响，并进行了用户研究"
+}
+{
+    "title": "Visible Nuances: A Caption System to Visualize Paralinguistic Speech Cues for Deaf and Hard-of-Hearing Individuals",
+    "reason": "相关原因：论文探讨了字幕设计并进行了用户研究，符合用户的要求"
+}
+{
+    "title": "“Easier or Harder, Depending on Who the Hearing Person Is”: Codesigning Videoconferencing Tools for Small Groups with Mixed Hearing Status",
+    "reason": "相关原因：论文探讨了实时字幕设计，并进行了用户研究，符合用户的要求"
+}
+{
+    "title": "Haptic-Captioning: Using Audio-Haptic Interfaces to Enhance Speaker Indication in Real-Time Captions for Deaf and Hard-of-Hearing Viewers",
+    "reason": "相关原因：论文探讨了字幕设计，并进行了用户研究，符合用户的要求"
+}
+{
+    "title": "It is Okay to be Distracted: How Real-time Transcriptions Facilitate Online Meeting with Distraction",
+    "reason": "相关原因：论文探讨了实时转录（字幕）在在线会议中的应用，并进行了用户研究"
+}
+{
+    "title": "Adaptive Subtitles: Preferences and Trade-Offs in Real-Time Media Adaption",
+    "reason": "相关原因：论文探讨了字幕设计的用户研究，并展示了字幕的使用"
+}
+{
+    "title": "“Caption It in an Accessible Way That Is Also Enjoyable”: Characterizing User-Driven Captioning Practices on TikTok",
+    "reason": "相关原因：论文探讨了TikTok上的用户生成字幕实践，并进行了用户研究，符合研究主题和要求"
+}
+{
+    "title": "Visualization of Speech Prosody and Emotion in Captions: Accessibility&nbsp;for&nbsp;Deaf&nbsp;and&nbsp;Hard-of-Hearing Users",
+    "reason": "相关原因：论文探讨了字幕设计中的情感和强调信息，并进行了用户研究，符合研究主题和要求"
+}
+{
+    "title": "Depth Conflict Reduction for Stereo VR Video Interfaces",
+    "reason": "相关原因：论文探讨了在立体VR视频任务中使用字幕的用户研究"
+}
+{
+    "title": "Visual Captions: Augmenting Verbal Communication with On-the-fly Visuals",
+    "reason": "相关原因：论文探讨了在视频会议中通过视觉字幕增强言语沟通，并进行了用户研究"
+}
+{
+    "title": "Understanding Blind People's Experiences with Computer-Generated Captions of Social Media Images",
+    "reason": "相关原因：论文探讨了字幕设计对盲人和视障人士的影响，并进行了用户研究"
+}
+{
+    "title": "Methods for Evaluation of Imperfect Captioning Tools by Deaf or Hard-of-Hearing Users at Different Reading Literacy Levels",
+    "reason": "相关原因：论文探讨了字幕工具的用户研究，符合用户研究问题的要求"
+}
+{
+    "title": "Caption Royale: Exploring the Design Space of Affective Captions from the Perspective of Deaf and Hard-of-Hearing Individuals",
+    "reason": "相关原因：论文探讨了字幕设计，并进行了用户研究，符合用户的要求"
+}
+{
+    "title": "VRCaptions: Design Captions for DHH Users in Multiplayer Communication in VR",
+    "reason": "相关原因：论文探讨了为DHH用户在VR多人交流中的字幕设计，并进行了用户研究"
+}
+{
+    "title": "Towards Understanding How Readers Integrate Charts and Captions: A Case Study with Line Charts",
+    "reason": "相关原因：论文探讨了图表和标题如何共同影响读者的理解，并进行了用户研究"
+}
+{
+    "title": "SpeechBubbles: Enhancing Captioning Experiences for Deaf and Hard-of-Hearing People in Group Conversations",
+    "reason": "相关原因：论文探讨了字幕设计并通过用户研究评估了不同设计，符合用户的研究要求和主题"
+}
+{
+    "title": "Toward Language Justice: Exploring Multilingual Captioning for Accessibility",
+    "reason": "相关原因：论文探讨了多语言字幕的设计及其对可访问性的影响，并进行了用户研究"
+}

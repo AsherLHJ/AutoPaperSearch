@@ -1,0 +1,567 @@
+// Search Topic: Explore how to associate spatial text with objects or people? Possible methods include Spatial Proximity, Symbolic Coding, Visual Connector.
+// Keywords: 
+// Requirements: 
+1. Should use VR,AR,XR,or MR devices.
+2. Should conduct user study.
+
+
+{
+    "title": "ARchitect: Building Interactive Virtual Experiences from Physical Affordances by Bringing Human-in-the-Loop",
+    "reason": "相关原因：论文探讨了在VR和AR环境中如何通过人类参与来映射物理对象到虚拟代理，符合使用VR,AR,XR,或MR设备的要求，并进行了用户研究"
+}
+{
+    "title": "Remote Collaboration With Mixed Reality Displays: How Shared Virtual Landmarks Facilitate Spatial Referencing",
+    "reason": "相关原因：论文探讨了在混合现实中共享虚拟地标如何促进空间参考，与用户研究问题相关"
+}
+{
+    "title": "Augmenting Static Visualizations with PapARVis Designer",
+    "reason": "相关原因：论文探讨了在增强现实中如何将虚拟内容与静态可视化结合，符合使用AR设备并进行用户研究的要求"
+}
+{
+    "title": "Where Should We Put It? Layout and Placement Strategies of Documents in Augmented Reality for Collaborative Sensemaking",
+    "reason": "相关原因：论文探讨了在AR环境中虚拟内容的空间组织，包括内容放置和布局策略，与用户研究问题相关"
+}
+{
+    "title": "MARVIS: Combining Mobile Devices and Augmented Reality for Visual Data Analysis",
+    "reason": "相关原因：论文探讨了AR技术在视觉数据分析中的应用，符合使用AR设备的要求"
+}
+{
+    "title": "Gesture-based augmented reality annotation",
+    "reason": "相关原因：论文探讨了在增强现实中使用手势进行空间文本标注的方法，并进行了用户研究"
+}
+{
+    "title": "Story CreatAR: a Toolkit for Spatially-Adaptive Augmented Reality Storytelling",
+    "reason": "相关原因：论文探讨了在AR/VR环境中如何关联空间文本与故事元素，符合研究主题和使用VR/AR设备的要求"
+}
+{
+    "title": "STREAM: Exploring the Combination of Spatially-Aware Tablets with Augmented Reality Head-Mounted Displays for Immersive Analytics",
+    "reason": "相关原因：论文探讨了在增强现实中使用空间感知平板与头戴式显示器结合的方法，符合使用AR设备并进行用户研究的要求"
+}
+{
+    "title": "Evaluation of Hand Gesture Annotation in Remote Collaboration Using Augmented Reality",
+    "reason": "相关原因：论文探讨了在增强现实中使用手势注释进行远程协作，符合使用AR设备和进行用户研究的要求"
+}
+{
+    "title": "A Visual Interaction Cue Framework from Video Game Environments for Augmented Reality",
+    "reason": "相关原因：论文探讨了增强现实中视觉交互线索的设计，与使用AR设备进行研究相关"
+}
+{
+    "title": "On the Go with AR: Attention to Virtual and Physical Targets while Varying Augmentation Density",
+    "reason": "相关原因：论文探讨了AR技术在虚拟和物理目标关联中的应用，并进行了用户研究"
+}
+{
+    "title": "MIRIA: A Mixed Reality Toolkit for the In-Situ Visualization and Analysis of Spatio-Temporal Interaction Data",
+    "reason": "相关原因：论文探讨了混合现实环境中用户交互的空间分析，与关联空间文本与对象或人的研究主题相关"
+}
+{
+    "title": "SpatIO: Spatial Physical Computing Toolkit Based on Extended Reality",
+    "reason": "相关原因：论文探讨了基于XR的空间物理计算工具包，支持三维空间中的组件放置和交互设计，符合使用XR设备及进行用户研究的要求"
+}
+{
+    "title": "Augmented Coach: Volumetric Motion Annotation and Visualization for Immersive Sports Coaching",
+    "reason": "相关原因：论文探讨了在VR/AR/MR设备中使用空间注释和可视化工具来关联运动模式，符合研究主题和要求"
+}
+{
+    "title": "Real-Virtual Objects: Exploring Bidirectional Embodied Tangible Interaction with a Virtual Human in World-Fixed Virtual Reality",
+    "reason": "相关原因：论文探讨了在虚拟现实中通过共享物体进行双向实体交互，符合使用VR设备并进行用户研究的要求"
+}
+{
+    "title": "A Comparison of Visual Attention Guiding Approaches for 360° Image-Based VR Tours",
+    "reason": "相关原因：论文探讨了在VR环境中引导用户视觉注意力的方法，并进行了用户研究，符合研究主题和要求"
+}
+{
+    "title": "Evaluating the Potential of Glanceable AR Interfaces for Authentic Everyday Uses",
+    "reason": "相关原因：论文探讨了AR设备在日常使用中的信息访问方法，并进行了用户研究"
+}
+{
+    "title": "Interacting with Distant Objects in Augmented Reality",
+    "reason": "相关原因：论文探讨了在增强现实中与远处物体交互的方法，并进行了用户研究，符合研究主题和要求"
+}
+{
+    "title": "XRDirector: A Role-Based Collaborative Immersive Authoring System",
+    "reason": "相关原因：论文探讨了使用AR和VR设备进行沉浸式创作，符合使用VR,AR,XR,或MR设备的要求，并进行了用户研究"
+}
+{
+    "title": "Design and Assessment of a Collaborative 3D Interaction Technique for Handheld Augmented Reality",
+    "reason": "相关原因：论文探讨了在移动增强现实中通过手持设备进行3D对象协作操作的设计和评估，符合使用AR设备和进行用户研究的要求"
+}
+{
+    "title": "A3RT: Attention-Aware AR Teleconferencing with Life-Size 2.5D Video Avatars",
+    "reason": "相关原因：论文探讨了AR技术在增强远程会议中的应用，并进行了用户研究，符合研究主题和要求"
+}
+{
+    "title": "On the Benefits of Image-Schematic Metaphors when Designing Mixed Reality Systems",
+    "reason": "相关原因：论文探讨了在混合现实系统中使用图像图式隐喻（ISMs）来改善用户学习，符合使用MR设备和进行用户研究的要求"
+}
+{
+    "title": "Towards Building Condition-Based Cross-Modality Intention-Aware Human-AI Cooperation under VR Environment",
+    "reason": "相关原因：论文探讨了在VR环境中识别用户意图并形成相关信息展示和推荐的方法，符合使用VR设备和进行用户研究的要求"
+}
+{
+    "title": "Batmen — Hybrid collaborative object manipulation using mobile devices",
+    "reason": "相关原因：论文探讨了使用AR技术进行协作3D对象操作，符合使用VR,AR,XR,或MR设备的要求，并进行了用户研究"
+}
+{
+    "title": "HandyNotes: using the hands to create semantic representations of contextually aware real-world objects",
+    "reason": "相关原因：论文探讨了使用MR技术（符合要求1）创建语义表示，并与真实世界对象关联，且涉及用户交互（符合要求2）"
+}
+{
+    "title": "Pearl: Physical Environment based Augmented Reality Lenses for In-Situ Human Movement Analysis",
+    "reason": "相关原因：论文探讨了在混合现实中分析人类运动数据的方法，涉及与周围感兴趣区域（如物体）的关系，并使用了AR技术进行原型开发"
+}
+{
+    "title": "On-body Icons: Designing a 3D Interface for Launching Apps in Augmented Reality",
+    "reason": "相关原因：论文探讨了在增强现实中通过虚拟图标与用户身体部位关联的方法，并进行了用户研究"
+}
+{
+    "title": "Enlightening Patients with Augmented Reality",
+    "reason": "相关原因：论文探讨了AR技术在医疗教育中的应用，符合使用AR设备和进行用户研究的要求"
+}
+{
+    "title": "DocuBits: VR Document Decomposition for Procedural Task Completion",
+    "reason": "相关原因：论文探讨了在VR环境中将文档分解为小的交互式教学元素的方法，并进行了用户研究，符合研究主题和要求"
+}
+{
+    "title": "Attention Guiding Using Augmented Reality in Complex Environments",
+    "reason": "相关原因：论文探讨了在复杂环境中使用AR技术引导注意力，与用户研究问题中关联空间文本与对象或人的方法相关"
+}
+{
+    "title": "A Tangible Spherical Proxy for Object Manipulation in Augmented Reality",
+    "reason": "相关原因：论文探讨了在增强现实环境中使用有形物体作为代理来操作虚拟对象，并进行了用户研究，符合用户的研究主题和要求"
+}
+{
+    "title": ""In VR, everything is possible!": Sketching and Simulating Spatially-Aware Interactive Spaces in Virtual Reality",
+    "reason": "相关原因：论文探讨了在VR中设计和模拟空间感知交互空间，符合使用VR设备并进行用户研究的要求"
+}
+{
+    "title": "ShapeFindAR: Exploring In-Situ Spatial Search for Physical Artifact Retrieval using Mixed Reality",
+    "reason": "相关原因：论文探讨了在混合现实环境中使用空间搜索方法关联文本与物理对象，符合研究主题和要求"
+}
+{
+    "title": "Towards an Understanding of Augmented Reality Extensions for Existing 3D Data Analysis Tools",
+    "reason": "相关原因：论文探讨了AR技术在3D数据分析中的应用，并进行了用户研究，符合研究主题和要求"
+}
+{
+    "title": "Geollery: A Mixed Reality Social Media Platform",
+    "reason": "相关原因：论文探讨了在混合现实环境中使用地理标记信息进行社交互动，符合使用VR,AR,XR,或MR设备的要求，并进行了用户研究"
+}
+{
+    "title": "InstruMentAR: Auto-Generation of Augmented Reality Tutorials for Operating Digital Instruments Through Recording Embodied Demonstration",
+    "reason": "相关原因：论文探讨了在AR环境中通过记录用户演示自动生成教程，与空间文本关联对象或人的方法相关"
+}
+{
+    "title": "A Context-Aware Technical Information Manager for Presentation in Augmented Reality",
+    "reason": "相关原因：论文探讨了在增强现实中动态管理技术信息的方法，符合使用AR设备的要求"
+}
+{
+    "title": "Determining Peripersonal Space Boundaries and Their Plasticity in Relation to Object and Agent Characteristics in an Immersive Virtual Environment",
+    "reason": "相关原因：论文探讨了在沉浸式虚拟现实中个人空间边界与物体和虚拟代理交互的关系，符合使用VR设备并进行用户研究的要求"
+}
+{
+    "title": "Guiding People in Complex Indoor Environments Using Augmented Reality",
+    "reason": "相关原因：论文探讨了在复杂室内环境中使用增强现实技术引导人们，涉及AR设备和用户研究"
+}
+{
+    "title": "Location-Aware Adaptation of Augmented Reality Narratives",
+    "reason": "相关原因：论文探讨了AR设备中空间文本与对象的关联方法，并进行了用户研究"
+}
+{
+    "title": "Virtual Objects in the Physical World: Relatedness and Psychological Ownership in Augmented Reality",
+    "reason": "相关原因：论文探讨了AR中虚拟对象与物理世界的关联性，符合使用AR设备的要求并进行了用户研究"
+}
+{
+    "title": "A User Study on View-sharing Techniques for One-to-Many Mixed Reality Collaborations",
+    "reason": "相关原因：论文探讨了在混合现实协作环境中使用AR和VR设备进行用户研究，符合研究主题和要求"
+}
+{
+    "title": "User-Driven Constraints for Layout Optimisation in Augmented Reality",
+    "reason": "相关原因：论文探讨了在增强现实中用户驱动的约束用于布局优化，涉及AR设备并进行了用户研究"
+}
+{
+    "title": "ProInterAR: A Visual Programming Platform for Creating Immersive AR Interactions",
+    "reason": "相关原因：论文探讨了使用AR设备创建交互式AR应用的方法，并进行了用户研究"
+}
+{
+    "title": "UI Mobility Control in XR: Switching UI Positionings between Static, Dynamic, and Self Entities",
+    "reason": "相关原因：论文探讨了XR中用户界面在静态、动态和自身实体之间的转换，涉及用户研究"
+}
+{
+    "title": "Evaluating Visual Cues for Future Airborne Surveillance Using Simulated Augmented Reality Displays",
+    "reason": "相关原因：论文探讨了在AR环境中使用视觉线索进行空中监视，并进行了用户研究，符合使用VR/AR设备和进行用户研究的要求"
+}
+{
+    "title": "ProGesAR: Mobile AR Prototyping for Proxemic and Gestural Interactions with Real-world IoT Enhanced Spaces",
+    "reason": "相关原因：论文探讨了在增强现实中通过位置、方向和手势等特征将数字内容与现实世界对象或环境关联的方法，并进行了用户研究"
+}
+{
+    "title": "Using Speech to Visualise Shared Gaze Cues in MR Remote Collaboration",
+    "reason": "相关原因：论文探讨了在MR环境中使用共享注视线索和语音输入来改善任务协调，符合使用MR设备和进行用户研究的要求"
+}
+{
+    "title": "Prompting Techniques for Guidance and Action Assistance Using Augmented-Reality Smart-Glasses",
+    "reason": "相关原因：论文探讨了在AR智能眼镜上开发指导和行动辅助技术，符合使用AR设备的要求"
+}
+{
+    "title": "2D versus 3D: A Comparison of Needle Navigation Concepts between Augmented Reality Display Devices",
+    "reason": "相关原因：论文探讨了AR技术在手术导航中的应用，并进行了用户研究"
+}
+{
+    "title": "Do You Really Need to Know Where “That” Is? Enhancing Support for Referencing in Collaborative Mixed Reality Environments",
+    "reason": "相关原因：论文探讨了在混合现实环境中如何增强对任务对象的引用支持，符合研究主题和使用VR,AR,XR,或MR设备的要求，并进行了用户研究"
+}
+{
+    "title": "Volumetric Hybrid Workspaces: Interactions with Objects in Remote and Co-located Telepresence",
+    "reason": "相关原因：论文探讨了在混合现实系统中如何通过共享工作空间关联远程和同地点的用户与对象，符合使用VR,AR,XR,或MR设备的要求，并进行了用户研究"
+}
+{
+    "title": "Tangible Globes for Data Visualisation in Augmented Reality",
+    "reason": "相关原因：论文探讨了在增强现实中使用有形球体进行数据可视化的设计，符合使用AR设备和进行用户研究的要求"
+}
+{
+    "title": "RealityCheck: Blending Virtual Environments with Situated Physical Reality",
+    "reason": "相关原因：论文探讨了在VR环境中结合现实世界对象和人的技术，符合使用VR设备的要求，并进行了用户研究"
+}
+{
+    "title": "An Exploratory Study of Augmented Reality Presence for Tutoring Machine Tasks",
+    "reason": "相关原因：论文探讨了AR技术在空间和身体协调交互中的应用，并进行了用户研究"
+}
+{
+    "title": "Investigating the Design of Augmented Narrative Spaces Through Virtual-Real Connections: A Systematic Literature Review",
+    "reason": "相关原因：论文探讨了AR技术在虚拟叙事空间与真实空间连接中的应用，符合使用VR,AR,XR,或MR设备的要求，并进行了系统文献回顾"
+}
+{
+    "title": "Spatial Gaze Markers: Supporting Effective Task Switching in Augmented Reality",
+    "reason": "相关原因：论文探讨了在增强现实中如何通过空间注视标记来支持任务切换，符合使用AR设备并进行用户研究的要求"
+}
+{
+    "title": "Active Assembly Guidance with Online Video Parsing",
+    "reason": "相关原因：论文探讨了在AR/MR应用中提供指导和反馈的系统，符合使用VR,AR,XR,或MR设备的要求"
+}
+{
+    "title": "AR You on Track? Investigating Effects of Augmented Reality Anchoring on Dual-Task Performance While Walking",
+    "reason": "相关原因：论文探讨了AR技术在空间文本与对象关联中的应用，并进行了用户研究"
+}
+{
+    "title": "Validating the Benefits of Glanceable and Context-Aware Augmented Reality for Everyday Information Access Tasks",
+    "reason": "相关原因：论文探讨了在AR环境中如何根据用户上下文智能地放置虚拟内容，与用户研究问题中探讨的空间文本与对象或人关联的方法相关"
+}
+{
+    "title": "Documents in Your Hands: Exploring Interaction Techniques for Spatial Arrangement of Augmented Reality Documents",
+    "reason": "相关原因：论文探讨了在AR环境中如何管理、组织和比较多个文档，与用户研究主题高度相关，并符合使用AR设备和进行用户研究的要求"
+}
+{
+    "title": "Exploring Effects of Screen-Fixed and World-Fixed Annotation on Navigation in Virtual Reality",
+    "reason": "相关原因：论文探讨了在虚拟现实中使用不同类型的虚拟注释对导航性能的影响，符合使用VR设备并进行用户研究的要求"
+}
+{
+    "title": "Prototyping of Augmented Reality interfaces for air traffic alert and their evaluation using a Virtual Reality aircraft-proximity simulator",
+    "reason": "相关原因：论文探讨了使用AR和VR设备进行用户研究，以评估不同的AR界面设计，符合研究主题和要求"
+}
+{
+    "title": "Reimagining TaxiVis through an Immersive Space-Time Cube metaphor and reflecting on potential benefits of Immersive Analytics for urban data exploration",
+    "reason": "相关原因：论文探讨了在VR和AR技术支持的沉浸式环境中重新构想和扩展传统可视化系统，符合使用VR,AR,XR,或MR设备的要求，并涉及用户研究"
+}
+{
+    "title": "From Following to Understanding: Investigating the Role of Reflective Prompts in AR-Guided Tasks to Promote User Understanding",
+    "reason": "相关原因：论文探讨了AR技术在促进用户理解任务中的应用，并进行了用户研究"
+}
+{
+    "title": "Collaborative Production Line Planning with Augmented Fabrication",
+    "reason": "相关原因：论文探讨了在AR设备（Microsoft Hololens）上进行的协作生产规划，符合使用VR,AR,XR,或MR设备的要求，并计划进行用户研究"
+}
+{
+    "title": "A User-Oriented Approach to Space-Adaptive Augmentation: The Effects of Spatial Affordance on Narrative Experience in an Augmented Reality Detective Game",
+    "reason": "相关原因：论文探讨了AR技术在空间适应增强中的应用，并进行了用户研究，符合研究主题和要求"
+}
+{
+    "title": "Content Presentation on 3D Augmented Reality Windshield Displays in the Context of Automated Driving",
+    "reason": "相关原因：论文探讨了在自动驾驶背景下使用3D增强现实挡风玻璃显示器的内容展示方式，并进行了用户研究，符合用户的研究主题和要求"
+}
+{
+    "title": "Peering Under the Hull: Enhanced Decision Making via an Augmented Environment",
+    "reason": "相关原因：论文探讨了AR技术在增强团队决策过程中的应用，并进行了用户研究"
+}
+{
+    "title": "CoCreatAR: Enhancing Authoring of Outdoor Augmented Reality Experiences Through Asymmetric Collaboration",
+    "reason": "相关原因：论文探讨了在户外增强现实体验中使用不对称协作的方法，符合使用AR/MR设备和进行用户研究的要求"
+}
+{
+    "title": "Projective Windows: Bringing Windows in Space to the Fingertip",
+    "reason": "相关原因：论文探讨了在AR和VR中管理3D平面窗口的方法，符合使用VR,AR,XR,或MR设备的要求，并进行了用户研究"
+}
+{
+    "title": "AMMA: Adaptive Multimodal Assistants Through Automated State Tracking and User Model-Directed Guidance Planning",
+    "reason": "相关原因：论文探讨了在虚拟现实中使用的自适应多模态助手，符合使用VR设备并进行用户研究的要求"
+}
+{
+    "title": "Scenariot: Spatially Mapping Smart Things Within Augmented Reality Scenes",
+    "reason": "相关原因：论文探讨了在AR场景中通过空间关系关联智能物体的方法，符合使用AR设备和进行用户研究的要求"
+}
+{
+    "title": "Reading on 3D Surfaces in Virtual Environments",
+    "reason": "相关原因：论文探讨了在虚拟现实环境中将文本与3D对象关联的方法，并进行了用户研究，符合研究主题和要求"
+}
+{
+    "title": "Traversing Dual Realities: Investigating Techniques for Transitioning 3D Objects between Desktop and Augmented Reality Environments",
+    "reason": "相关原因：论文探讨了在AR环境中移动3D对象的技术，并进行了用户研究"
+}
+{
+    "title": "Characterizing Asymmetric Collaborative Interactions in Virtual and Augmented Realities",
+    "reason": "相关原因：论文探讨了在VR和AR设备中进行的用户研究，涉及空间协作交互"
+}
+{
+    "title": "Tutor In-sight: Guiding and Visualizing Students’ Attention with Mixed Reality Avatar Presentation Tools",
+    "reason": "相关原因：论文探讨了在混合现实中如何通过MR avatar增强学生的空间感知和注意力引导，符合使用MR设备并进行用户研究的要求"
+}
+{
+    "title": "OVRlap: Perceiving Multiple Locations Simultaneously to Improve Interaction in VR",
+    "reason": "相关原因：论文探讨了VR技术在空间感知和交互中的应用，并进行了用户研究"
+}
+{
+    "title": "“I can run at night!": Using Augmented Reality to Support Nighttime Guided Running for Low-vision Runners",
+    "reason": "相关原因：论文探讨了AR技术在支持低视力跑者夜间跑步中的应用，并进行了用户研究"
+}
+{
+    "title": "An Evaluation of Spatial Anchoring to position AR Guidance in Arthroscopic Surgery",
+    "reason": "相关原因：论文探讨了在增强现实手术中使用空间锚定策略，与用户研究问题中的关联空间文本与对象或人的方法相关，并使用了AR设备并进行了用户研究"
+}
+{
+    "title": "Mini-Me: An Adaptive Avatar for Mixed Reality Remote Collaboration",
+    "reason": "相关原因：论文探讨了在混合现实中如何通过自适应头像关联远程用户，并进行了用户研究"
+}
+{
+    "title": "Connecting Home: Human-Centric Setup Automation in the Augmented Smart Home",
+    "reason": "相关原因：论文探讨了在增强现实中如何通过直接交互识别IoT设备的位置，与用户研究问题中关联空间文本与对象或人的方法相关"
+}
+{
+    "title": "Mixed Reality Remote Collaboration Combining 360 Video and 3D Reconstruction",
+    "reason": "相关原因：论文探讨了在VR和AR设备上进行的远程协作，并进行了用户研究，符合研究主题和要求"
+}
+{
+    "title": "Using augmented reality to improve dismounted operators' situation awareness",
+    "reason": "相关原因：论文探讨了使用增强现实技术来改善操作员的情境感知，符合使用AR设备的要求"
+}
+{
+    "title": "“Oh My God! It’s Recreating Our Room!” Understanding Children’s Experiences with A Room-Scale Augmented Reality Authoring Toolkit",
+    "reason": "相关原因：论文探讨了AR技术在空间探索中的应用，并进行了用户研究"
+}
+{
+    "title": "Partially Blended Realities: Aligning Dissimilar Spaces for Distributed Mixed Reality Meetings",
+    "reason": "相关原因：论文探讨了在混合现实中如何通过部分对齐物理空间来支持远程协作，涉及XR设备的使用并进行了用户研究"
+}
+{
+    "title": "GeoGate: Correlating Geo-Temporal Datasets Using an Augmented Reality Space-Time Cube and Tangible Interactions",
+    "reason": "相关原因：论文探讨了在增强现实环境中使用空间时间立方体和有形交互来关联地理时间数据集，符合使用AR/MR设备和进行用户研究的要求"
+}
+{
+    "title": "Exploring Large Language Model-Driven Agents for Environment-Aware Spatial Interactions and Conversations in Virtual Reality Role-Play Scenarios",
+    "reason": "相关原因：论文探讨了在VR环境中使用LLM代理进行空间感知和交互，符合使用VR设备和进行用户研究的要求"
+}
+{
+    "title": "ProObjAR: Prototyping Spatially-aware Interactions of Smart Objects with AR-HMD",
+    "reason": "相关原因：论文探讨了在AR-HMD中设计空间交互的原型系统，符合使用VR、AR、XR或MR设备的要求，并进行了用户研究"
+}
+{
+    "title": "The wobbly table: Increased social presence via subtle incidental movement of a real-virtual table",
+    "reason": "相关原因：论文探讨了在VR环境中通过共享真实-虚拟对象的微妙偶然运动来增强社交存在感，符合使用MR设备并进行用户研究的要求"
+}
+{
+    "title": "SnapToReality: Aligning Augmented Reality to the Real World",
+    "reason": "相关原因：论文探讨了AR技术中虚拟对象与现实世界的精确对齐，并进行了用户研究"
+}
+{
+    "title": "Teachable Reality: Prototyping Tangible Augmented Reality with Everyday Objects by Leveraging Interactive Machine Teaching",
+    "reason": "相关原因：论文探讨了使用AR设备进行原型设计，并进行了用户研究，与研究主题和要求高度相关"
+}
+{
+    "title": "Virtual Objects as Spatial Cues in Collaborative Mixed Reality Environments: How They Shape Communication Behavior and User Task Load",
+    "reason": "相关原因：论文探讨了在混合现实环境中使用虚拟对象作为空间线索，符合使用VR、AR、XR或MR设备的要求，并进行了用户研究"
+}
+{
+    "title": "Understanding Context to Capture when Reconstructing Meaningful Spaces for Remote Instruction and Connecting in XR",
+    "reason": "相关原因：论文探讨了在XR环境中重建有意义的空间以进行远程指导和连接，涉及XR设备的使用并进行了用户研究"
+}
+{
+    "title": "Ubi Edge: Authoring Edge-Based Opportunistic Tangible User Interfaces in Augmented Reality",
+    "reason": "相关原因：论文探讨了在增强现实中如何利用物体的边缘作为交互界面，与空间文本关联对象或人的研究主题相关，并且使用了AR设备并进行了用户研究"
+}
+{
+    "title": "Optimizing Moving Target Selection in VR by Integrating Proximity-Based Feedback Types and Modalities",
+    "reason": "相关原因：论文探讨了在VR中使用基于接近度的反馈类型和模态来改善移动目标的选择，符合使用VR设备并进行用户研究的要求"
+}
+{
+    "title": "Exploring Spatial UI Transition Mechanisms with Head-Worn Augmented Reality",
+    "reason": "相关原因：论文探讨了在增强现实环境中设计适应上下文变化的界面，涉及AR设备的使用和用户研究"
+}
+{
+    "title": "Glanceable AR: Evaluating Information Access Methods for Head-Worn Augmented Reality",
+    "reason": "相关原因：论文探讨了在AR头戴设备中如何通过视线和头部旋转访问信息，与用户研究问题中的空间文本关联方法相关"
+}
+{
+    "title": "User Preference for Navigation Instructions in Mixed Reality",
+    "reason": "相关原因：论文探讨了混合现实中导航指令的用户偏好，涉及MR设备的使用并进行了用户研究"
+}
+{
+    "title": "Dually Noted: Layout-Aware Annotations with Smartphone Augmented Reality",
+    "reason": "相关原因：论文探讨了使用智能手机AR进行文档注释的方法，并进行了用户研究，符合研究主题和要求"
+}
+{
+    "title": "Evaluating the Extension of Wall Displays with AR for Collaborative Work",
+    "reason": "相关原因：论文探讨了AR技术在扩展墙显示中的应用，并进行了用户研究，符合研究主题和要求"
+}
+{
+    "title": "Adaptive information density for augmented reality displays",
+    "reason": "相关原因：论文探讨了AR设备中信息密度与视觉杂乱度的平衡，符合使用AR设备的要求，并进行了用户研究"
+}
+{
+    "title": "Information Placement in Virtual Reality",
+    "reason": "相关原因：论文探讨了在虚拟现实中使用眼动追踪技术关联信息标签与对象，符合使用VR设备和进行用户研究的要求"
+}
+{
+    "title": "A User Study on Mixed Reality Remote Collaboration with Eye Gaze and Hand Gesture Sharing",
+    "reason": "相关原因：论文探讨了在混合现实中通过视觉线索（如注视和手势）进行远程协作，符合使用MR设备和进行用户研究的要求"
+}
+{
+    "title": "Exploring 3D Interaction with Gaze Guidance in Augmented Reality",
+    "reason": "相关原因：论文探讨了在AR中使用凝视引导进行3D交互的方法，并进行了用户研究，符合研究主题和要求"
+}
+{
+    "title": "Investigating Spatial Representation of Learning Content in Virtual Reality Learning Environments",
+    "reason": "相关原因：论文探讨了在虚拟现实学习环境中学习内容的空间表示方法，包括对象锚定等方法，并进行了用户研究"
+}
+{
+    "title": "Getting out of Out of Sight: Evaluation of AR Mechanisms for Awareness and Orientation Support in Occluded Multi-Room Settings",
+    "reason": "相关原因：论文探讨了AR技术在提供对遮挡对象和人的空间文本关联方面的应用，并进行了用户研究"
+}
+{
+    "title": "A Mixed Presence Collaborative Mixed Reality System",
+    "reason": "相关原因：论文探讨了在混合现实环境中使用HMD基于AR的解决方案进行协作，符合使用VR、AR、XR或MR设备的要求，并进行了用户研究"
+}
+{
+    "title": "On the Shoulder of the Giant: A Multi-Scale Mixed Reality Collaboration with 360 Video Sharing and Tangible Interaction",
+    "reason": "相关原因：论文探讨了MR技术在协作中的应用，并进行了用户研究"
+}
+{
+    "title": "Evaluation of labelling layout methods in augmented reality",
+    "reason": "相关原因：论文探讨了在增强现实环境中使用视图管理技术进行对象标签的方法，并进行了用户研究"
+}
+{
+    "title": "PropType: Everyday Props as Typing Surfaces in Augmented Reality",
+    "reason": "相关原因：论文探讨了在AR环境中将日常物品作为打字表面的交互界面，并进行了用户研究"
+}
+{
+    "title": "EyeSeeThrough: Unifying Tool Selection and Application in Virtual Environments",
+    "reason": "相关原因：论文探讨了在VR环境中使用眼动追踪技术来关联空间文本与对象的方法，并进行了用户研究"
+}
+{
+    "title": "In-Situ Labeling for Augmented Reality Language Learning",
+    "reason": "相关原因：论文探讨了在增强现实中如何通过空间线索和语义相关对象合并教育内容，与用户研究问题中关联空间文本与对象或人的方法相关"
+}
+{
+    "title": "Simultaneous Scene-independent Camera Localization and Category-level Object Pose Estimation via Multi-level Feature Fusion",
+    "reason": "相关原因：论文探讨了在AR/MR应用中相机定位和物体姿态估计，符合使用VR,AR,XR,或MR设备的要求，并进行了实验验证"
+}
+{
+    "title": "Work Surface Arrangement Optimization Driven by Human Activity",
+    "reason": "相关原因：论文探讨了在混合现实环境中通过用户活动优化工作表面排列，并进行了用户研究"
+}
+{
+    "title": "Space-sharing AR interaction on multiple mobile devices with a depth camera",
+    "reason": "相关原因：论文探讨了在AR环境中多设备共享空间和交互的方法，符合使用AR设备的要求"
+}
+{
+    "title": "Warping Deixis: Distorting Gestures to Enhance Collaboration",
+    "reason": "相关原因：论文探讨了在扩展现实环境中改善指向手势感知的新方法，符合使用VR,AR,XR,或MR设备的要求，并进行了用户研究"
+}
+{
+    "title": "May The Force be With You: Cloning Distant Objects to Improve Medium-Field Interactions in Augmented Reality",
+    "reason": "相关原因：论文探讨了在增强现实中与虚拟对象交互的技术，并进行了用户研究，符合使用AR设备和进行用户研究的要求"
+}
+{
+    "title": "WARPY: Sketching Environment-Aware 3D Curves in Mobile Augmented Reality",
+    "reason": "相关原因：论文探讨了在AR环境中创建3D曲线的技术，并进行了用户研究"
+}
+{
+    "title": "Text Presentation for Augmented Reality Applications in Dual-Task Situations",
+    "reason": "相关原因：论文探讨了在增强现实(AR)眼镜中阅读文本与执行现实世界任务之间的干扰，符合使用AR设备并进行用户研究的要求"
+}
+{
+    "title": "Magnoramas: Magnifying Dioramas for Precise Annotations in Asymmetric 3D Teleconsultation",
+    "reason": "相关原因：论文探讨了在VR和AR设备中进行的用户研究，涉及虚拟空间中的精确注释，与研究主题相关"
+}
+{
+    "title": "Designing for Human Operations on the Moon: Challenges and Opportunities of Navigational HUD Interfaces",
+    "reason": "相关原因：论文探讨了在VR环境中模拟月球导航HUD的设计，并进行了用户研究，符合使用VR设备和进行用户研究的要求"
+}
+{
+    "title": "CARING-AI: Towards Authoring Context-aware Augmented Reality INstruction through Generative Artificial Intelligence",
+    "reason": "相关原因：论文探讨了在AR应用中生成上下文感知的指令，涉及XR设备的使用并进行了用户研究"
+}
+{
+    "title": "EchoSight: Streamlining Bidirectional Virtual-physical Interaction with In-situ Optical Tethering",
+    "reason": "相关原因：论文探讨了AR设备中的双向虚拟物理交互，符合使用VR,AR,XR,或MR设备的要求，并进行了用户研究"
+}
+{
+    "title": "IEDS: Exploring an Intelli-Embodied Design Space Combining Designer, AR, and GAI to Support Industrial Conceptual Design",
+    "reason": "相关原因：论文探讨了AR技术在工业概念设计中的应用，包括用户研究和AR设备的使用"
+}
+{
+    "title": "UnMapped: Leveraging Experts’ Situated Experiences to Ease Remote Guidance in Collaborative Mixed Reality",
+    "reason": "相关原因：论文探讨了在混合现实中如何通过专家的空间记忆来辅助远程指导，涉及MR设备和用户研究"
+}
+{
+    "title": "Information Placement in Virtual Reality",
+    "reason": "相关原因：论文探讨了在虚拟现实中使用眼动追踪技术关联信息标签与对象，符合使用VR设备并进行用户研究的要求"
+}
+{
+    "title": "Proxemics for Human-Agent Interaction in Augmented Reality",
+    "reason": "相关原因：论文探讨了AR中虚拟代理的空间文本关联及其对用户行为的影响，并进行了用户研究"
+}
+{
+    "title": "Evaluation of Pointing Interfaces with an AR Agent for Multi-section Information Guidance",
+    "reason": "相关原因：论文探讨了在AR环境中如何通过指向接口与展品信息关联，并进行了用户研究"
+}
+{
+    "title": "Supporting Visual Annotation Cues in a Live 360 Panorama-based Mixed Reality Remote Collaboration",
+    "reason": "相关原因：论文探讨了在MR环境中使用视觉注释线索与物理环境准确注册的方法，符合使用MR设备和进行用户研究的要求"
+}
+{
+    "title": "Exploring the Effects of Augmented Reality Notification Type and Placement in AR HMD while Walking",
+    "reason": "相关原因：论文探讨了AR技术在通知展示中的应用，并进行了用户研究，符合研究主题和要求"
+}
+{
+    "title": "AR Interfaces for Disocclusion—A Comparative Study",
+    "reason": "相关原因：论文探讨了AR技术在空间文本与对象关联中的应用，并进行了用户研究"
+}
+{
+    "title": "Virtual Agent Positioning Driven by Scene Semantics in Mixed Reality",
+    "reason": "相关原因：论文探讨了在混合现实设备中使用场景语义来定位虚拟代理，并进行了用户研究"
+}
+{
+    "title": "Augmented Reality Views for Occluded Interaction",
+    "reason": "相关原因：论文探讨了在增强现实中如何通过不同视图展示被遮挡物体以支持操作，与空间文本与物体关联的研究主题相关"
+}
+{
+    "title": "A study of the influence of AR on the perception, comprehension and projection levels of situation awareness",
+    "reason": "相关原因：论文探讨了AR技术如何影响用户对次要元素的情境意识，与用户研究问题中的AR设备使用和用户研究要求相关"
+}
+{
+    "title": "Comparison of Spatial Visualization Techniques for Radiation in Augmented Reality",
+    "reason": "相关原因：论文探讨了在AR中使用空间可视化技术，并进行了用户研究，符合用户的研究主题和要求"
+}
+{
+    "title": "ScalAR: Authoring Semantically Adaptive Augmented Reality Experiences in Virtual Reality",
+    "reason": "相关原因：论文探讨了在虚拟现实中创建语义自适应的增强现实体验，涉及AR和VR设备的使用，并进行了用户研究"
+}
+{
+    "title": "Supporting Collaborative Discussions In Surgical Teleconsulting Through Augmented Reality Head Mounted Displays",
+    "reason": "相关原因：论文探讨了AR-HMD在远程协作中的应用，符合使用AR设备和进行用户研究的要求"
+}
+{
+    "title": "Embodied Axes: Tangible, Actuated Interaction for 3D Augmented Reality Data Spaces",
+    "reason": "相关原因：论文探讨了在增强现实中使用的3D数据空间控制器，涉及AR设备并进行了用户研究"
+}
+{
+    "title": "Make Interaction Situated: Designing User Acceptable Interaction for Situated Visualization in Public Environments",
+    "reason": "相关原因：论文探讨了在公共环境中使用AR技术进行交互设计，并通过用户研究评估了交互的有效性和接受度"
+}

@@ -1,0 +1,21 @@
+// Query Time: 2025-07-06 20:07:19
+// Selected Folders: CHI, IEEEVR, ISMAR, VRST
+// Year Range: 当前设置：包含所有年份的文件
+// Research Question: Text Correction in XR (VR, AR, MR) platforms.
+// Keywords: 
+// Requirements: 1. Must have user study.
+2. Must do the text correction task.
+3. For the user experiment, must using XR devices, include VR, AR, MR devices.
+
+{
+    "title": "Supporting Text Entry in Virtual Reality with Large Language Models",
+    "reason": "相关原因：论文探讨了在VR中使用大型语言模型提高文本输入效率的方法，并进行了用户实验，符合研究主题和要求"
+}
+{
+    "title": "Exploring Text Revision with Backspace and Caret in Virtual Reality",
+    "reason": "相关原因：论文探讨了虚拟现实中的文本修订任务，符合用户研究问题的相关性"
+}
+{
+    "title": "Efficient Mid-Air Text Input Correction in Virtual Reality",
+    "reason": "相关原因：论文探讨了虚拟现实中文本输入校正的高效方法，并包含用户研究，符合研究主题和要求"
+}

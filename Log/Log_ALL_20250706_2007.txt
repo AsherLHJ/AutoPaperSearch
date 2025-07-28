@@ -1,0 +1,40 @@
+// Query Time: 2025-07-06 20:07:19
+// Selected Folders: CHI, IEEEVR, ISMAR, VRST
+// Year Range: 当前设置：包含所有年份的文件
+// Research Question: Text Correction in XR (VR, AR, MR) platforms.
+// Keywords: 
+// Requirements: 1. Must have user study.
+2. Must do the text correction task.
+3. For the user experiment, must using XR devices, include VR, AR, MR devices.
+
+[Thread-31] 处理论文 3094 时出错: Request timed out.
+[Thread-97] 处理论文 9689 时出错: Request timed out.
+[Thread-80] 处理论文 7994 时出错: Request timed out.
+[Thread-46] 处理论文 4591 时出错: Request timed out.
+[Thread-41] 处理论文 4094 时出错: Request timed out.
+[Thread-63] 处理论文 6289 时出错: Request timed out.
+[Thread-13] 处理论文 1271 时出错: Request timed out.
+[Thread-83] 处理论文 8291 时出错: Request timed out.
+[Thread-16] 处理论文 1575 时出错: Request timed out.
+[Thread-98] 处理论文 9790 时出错: Request timed out.
+[Thread-88] 处理论文 8791 时出错: Request timed out.
+[Thread-70] 处理论文 6991 时出错: Request timed out.
+[Thread-84] 处理论文 8392 时出错: Request timed out.
+[Thread-42] 处理论文 4194 时出错: Request timed out.
+[Thread-92] 处理论文 9195 时出错: Request timed out.
+[Thread-56] 处理论文 5594 时出错: Request timed out.
+[Thread-95] 处理论文 9493 时出错: Request timed out.
+[Thread-60] 处理论文 5991 时出错: Request timed out.
+[Thread-61] 处理论文 6090 时出错: Request timed out.
+[Thread-86] 处理论文 8589 时出错: Request timed out.
+[Thread-49] 处理论文 4889 时出错: Request timed out.
+[Thread-10] 处理论文 972 时出错: Request timed out.
+[Thread-89] 处理论文 8893 时出错: Request timed out.
+[Thread-72] 处理论文 7189 时出错: Request timed out.
+[Thread-20] 处理论文 1985 时出错: Request timed out.
+[Thread-25] 处理论文 2486 时出错: Request timed out.
+[Thread-37] 处理论文 3691 时出错: Request timed out.
+[Thread-52] 处理论文 5191 时出错: Request timed out.
+[Thread-63] 处理论文 6290 时出错: Request timed out.
+[Thread-16] 处理论文 1576 时出错: Request timed out.
+[Thread-70] 处理论文 6992 时出错: Request timed out.

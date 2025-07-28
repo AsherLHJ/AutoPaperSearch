@@ -1,0 +1,43 @@
+// Search Topic: Research exploring how to provide subtitle support for foreign language translation scenarios.
+// Keywords: 
+// Requirements: 
+1. Should about foreign language translation scenarios.
+2. Should conduct user study.
+
+
+{
+    "title": "Unmet Needs and Opportunities for Mobile Translation AI",
+    "reason": "相关原因：论文探讨了外语翻译场景中的需求，并进行了用户研究"
+}
+{
+    "title": "A View on the Viewer: Gaze-Adaptive Captions for Videos",
+    "reason": "相关原因：论文探讨了字幕在跨语言多媒体内容分发中的使用，并进行了用户研究"
+}
+{
+    "title": "Designing for Transient Use: A Human-in-the-loop Translation Platform for Refugees",
+    "reason": "相关原因：论文探讨了在外国语言翻译场景中提供支持的人机交互平台，并进行了用户研究"
+}
+{
+    "title": "Action Translate: Supporting Students in Translation Volunteering",
+    "reason": "相关原因：论文探讨了在非专业翻译场景中支持学生志愿者的数字系统，符合外语翻译场景的要求"
+}
+{
+    "title": "Beyond Translation: Design and Evaluation of an Emotional and Contextual Knowledge Interface for Foreign Language Social Media Posts",
+    "reason": "相关原因：论文探讨了在社交媒体上为外语帖子提供情感和上下文注释的工具，并进行了用户研究"
+}
+{
+    "title": "ViVo: Video-Augmented Dictionary for Vocabulary Learning",
+    "reason": "相关原因：论文探讨了在语言学习中使用视频和字幕来增强词汇记忆，虽然主要关注词汇学习，但涉及了字幕的使用和用户研究"
+}
+{
+    "title": "Sustaining Human Agency, Attending to Its Cost: An Investigation into Generative AI Design for Non-Native Speakers' Language Use",
+    "reason": "相关原因：论文探讨了机器翻译在非母语者信息寻求中的应用，并进行了用户研究"
+}
+{
+    "title": "Spatial Speech Translation: Translating Across Space With Binaural Hearables",
+    "reason": "相关原因：论文探讨了外语翻译场景中的空间语音翻译技术，并进行了用户研究"
+}
+{
+    "title": "Toward Language Justice: Exploring Multilingual Captioning for Accessibility",
+    "reason": "相关原因：论文探讨了多语言字幕在可访问性方面的应用，符合外语翻译场景的研究主题，并进行了用户研究"
+}

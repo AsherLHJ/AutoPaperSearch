@@ -8,6 +8,7 @@ from ..process.paper_processor import process_papers
 from ..load_data.load_api_keys import load_api_keys_from_files, print_loaded_keys
 from ..tools.txt_to_bib_converter import TxtToBibConverter
 import threading
+import json
 import sys
 import os
 import re
@@ -192,8 +193,17 @@ class App(tk.Tk):
         controls_frame = ttk.LabelFrame(self.main_tab, text=self.lang["config_label"], padding="15", style="Config.TLabelframe")
         controls_frame.pack(side=tk.LEFT, fill=tk.Y, padx=15, pady=15)
 
-        log_frame = ttk.LabelFrame(self.main_tab, text=self.lang["log_label"], padding="15", style="Log.TLabelframe")
-        log_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True, padx=15, pady=15)
+        # 右侧主框架
+        right_frame = ttk.Frame(self.main_tab, style="Tab.TFrame")
+        right_frame.pack(side=tk.RIGHT, fill=tk.BOTH, expand=True, padx=15, pady=15)
+
+        # Log框架 (高度为原来的1/3)
+        log_frame = ttk.LabelFrame(right_frame, text=self.lang["log_label"], padding="15", style="Log.TLabelframe")
+        log_frame.pack(side=tk.TOP, fill=tk.BOTH, expand=False, pady=(0, 10))
+
+        # Result Summary框架 (占据剩余空间)
+        result_summary_frame = ttk.LabelFrame(right_frame, text=self.lang.get("result_summary_label", "论文分析结果总览"), padding="15", style="Log.TLabelframe")
+        result_summary_frame.pack(side=tk.BOTTOM, fill=tk.BOTH, expand=True)
 
         # 在文件夹设置选项卡中创建控件
         self.setup_folder_tab()
@@ -219,6 +229,7 @@ class App(tk.Tk):
             log_frame, 
             state='disabled', 
             wrap=tk.WORD, 
+            height=15,  # 设置固定高度，约为原来的1/3
             bg=self.theme.get_color('log_bg'),
             fg=self.theme.get_color('fg'),
             insertbackground=self.theme.get_color('accent'),
@@ -229,6 +240,22 @@ class App(tk.Tk):
             borderwidth=1
         )
         self.log_text.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
+
+        # --- Result Summary view ---
+        self.result_summary_text = scrolledtext.ScrolledText(
+            result_summary_frame, 
+            state='disabled', 
+            wrap=tk.WORD, 
+            bg=self.theme.get_color('log_bg'),
+            fg=self.theme.get_color('fg'),
+            insertbackground=self.theme.get_color('accent'),
+            selectbackground=self.theme.get_color('selection'),
+            selectforeground=self.theme.get_color('fg'),
+            font=self.default_font,
+            relief=tk.FLAT,
+            borderwidth=1
+        )
+        self.result_summary_text.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
 
         # --- Status Bar ---
         self.status_bar = ttk.Label(
@@ -506,7 +533,7 @@ class App(tk.Tk):
             folder_path = path_var.get()
             if folder_name and not os.path.exists(folder_path):
                 os.makedirs(folder_path)
-                self.log_message(f"已创建{folder_name}文件夹: {folder_path}")
+                self.log_message(self.lang.get("folder_created", "已创建{folder_name}文件夹: {folder_path}").format(folder_name=folder_name, folder_path=folder_path))
             
             # 重新加载信息
             self.preload_info()
@@ -600,19 +627,48 @@ class App(tk.Tk):
         self.keywords_text.insert(tk.END, config.Keywords)
         self.keywords_text.pack(anchor='w', fill='x')
 
-        # 主要操作按钮区域
+        # 主要操作按钮区域 - 移到关键词下方
         main_button_frame = ttk.Frame(parent, style="Tab.TFrame")
-        main_button_frame.pack(pady=(20, 10), fill='x')
+        main_button_frame.pack(pady=(10, 10), fill='x')
 
         self.start_button = ttk.Button(main_button_frame, text=self.lang["start_button"], command=self.start_processing, style="Start.TButton")
         self.start_button.pack(side=tk.LEFT, expand=True, fill='x', padx=(0, 5))
 
         self.stop_button = ttk.Button(main_button_frame, text=self.lang["stop_button"], command=self.stop_processing, state='disabled', style="Stop.TButton")
         self.stop_button.pack(side=tk.LEFT, expand=True, fill='x', padx=(5, 0))
+
+        # Clustering Analysis Words
+        ttk.Label(parent, text=self.lang.get("clustering_words_label", "聚类分析关键词:"), style="TLabel").pack(anchor='w', pady=(10, 0))
+        self.clustering_words_text = scrolledtext.ScrolledText(
+            parent, 
+            height=4, 
+            width=40,
+            bg=self.theme.get_color('input_bg'),
+            fg=self.theme.get_color('fg'),
+            insertbackground=self.theme.get_color('accent'),
+            selectbackground=self.theme.get_color('selection'),
+            selectforeground=self.theme.get_color('fg'),
+            font=self.default_font
+        )
+        self.clustering_words_text.pack(anchor='w', fill='x')
+
+        # Summary分析按钮区域
+        summary_button_frame = ttk.Frame(parent, style="Tab.TFrame")
+        summary_button_frame.pack(pady=(10, 0), fill='x')
         
-        # 辅助功能按钮区域
+        self.brief_summary_button = ttk.Button(summary_button_frame, text=self.lang.get("brief_summary_button", "简要总结"), command=self.generate_brief_summary, style="TButton")
+        self.brief_summary_button.pack(side=tk.LEFT, expand=True, fill='x', padx=(0, 5))
+        
+        self.deep_summary_button = ttk.Button(summary_button_frame, text=self.lang.get("deep_summary_button", "深度总结"), command=self.generate_deep_summary, style="TButton")
+        self.deep_summary_button.pack(side=tk.LEFT, expand=True, fill='x', padx=(5, 0))
+
+        # 在底部创建一个可伸缩的空白区域，将辅助按钮推到最下方
+        spacer_frame = ttk.Frame(parent, style="Tab.TFrame")
+        spacer_frame.pack(fill=tk.BOTH, expand=True)
+        
+        # 辅助功能按钮区域 - 移到配置面板的最下方
         utility_button_frame = ttk.Frame(parent, style="Tab.TFrame")
-        utility_button_frame.pack(pady=(5, 0), fill='x')
+        utility_button_frame.pack(side=tk.BOTTOM, pady=(5, 0), fill='x')
         
         self.clear_log_button = ttk.Button(utility_button_frame, text=self.lang.get("clear_log_button", "清空日志"), command=self.clear_log, style="TButton")
         self.clear_log_button.pack(side=tk.LEFT, expand=True, fill='x', padx=(0, 5))
@@ -669,6 +725,89 @@ class App(tk.Tk):
         self.log_text.delete(1.0, tk.END)
         self.log_text.config(state='disabled')
         self.log_message(self.lang.get("log_cleared", "日志已清空"))
+
+    def clear_result_summary(self):
+        """清空结果总览内容"""
+        self.result_summary_text.config(state='normal')
+        self.result_summary_text.delete(1.0, tk.END)
+        self.result_summary_text.config(state='disabled')
+
+    def update_result_summary(self, message=""):
+        """更新结果总览内容"""
+        def append_message():
+            self.result_summary_text.config(state='normal')
+            self.result_summary_text.insert(tk.END, message + '\n')
+            self.result_summary_text.config(state='disabled')
+            self.result_summary_text.see(tk.END)
+        
+        self.after(0, append_message)
+
+    def clear_result_summary(self):
+        """清空结果总览内容"""
+        def clear_content():
+            self.result_summary_text.config(state='normal')
+            self.result_summary_text.delete("1.0", tk.END)
+            self.result_summary_text.config(state='disabled')
+        
+        self.after(0, clear_content)
+
+    def generate_brief_summary(self):
+        """生成简要总结"""
+        from ..result_summary_tools import result_summary_tools
+        
+        # 检查clustering words输入框是否已有关键词
+        existing_keywords = self.clustering_words_text.get("1.0", tk.END).strip()
+        
+        if existing_keywords:
+            # 如果已有关键词，先清空结果总览内容，然后基于这些关键词重新做聚类分析
+            self.clear_result_summary()
+            self.update_result_summary(self.lang.get("brief_summary_title", "=== 简要总结 ==="))
+            self.update_result_summary(self.lang.get("reanalyzing_with_keywords", "基于现有关键词进行重新分析: {keywords}").format(keywords=existing_keywords))
+            self.update_result_summary(self.lang.get("generating_summary_with_keywords", "正在基于关键词生成简要总结..."))
+        else:
+            # 如果没有关键词，不清空（保持原有行为）
+            self.update_result_summary(self.lang.get("brief_summary_title", "=== 简要总结 ==="))
+            self.update_result_summary(self.lang.get("generating_summary_auto", "正在自动生成关键词并进行简要总结..."))
+        
+        # 定义回调函数
+        def on_result_ready(result):
+            def update_ui():
+                if result.get("success"):
+                    # 如果没有现有关键词，更新关键词到clustering words输入框
+                    if not existing_keywords:
+                        self.clustering_words_text.delete("1.0", tk.END)
+                        self.clustering_words_text.insert("1.0", result.get("keywords", ""))
+                    
+                    # 更新总结到结果文本框
+                    self.update_result_summary(f"\n{self.lang.get('keywords_display', '关键词')}: {result.get('keywords', '')}")
+                    self.update_result_summary(f"\n{result.get('summary', '')}")
+                else:
+                    self.update_result_summary(f"\n{result.get('error', self.lang.get('generation_failed', '生成失败'))}")
+            
+            self.after(0, update_ui)
+        
+        # 调用异步函数
+        result_summary_tools.generate_brief_summary_async(on_result_ready, existing_keywords)
+
+    def generate_deep_summary(self):
+        """生成深度总结 - 打开流式显示窗口"""
+        # 获取clustering words
+        clustering_words = self.clustering_words_text.get("1.0", tk.END).strip()
+        
+        if not clustering_words:
+            messagebox.showwarning(
+                self.lang.get("warning_title", "警告"), 
+                self.lang.get("no_clustering_words", "请先生成简要总结或输入聚类分析关键词")
+            )
+            return
+        
+        # 打开深度总结流式窗口
+        deep_summary_window = DeepSummaryWindow(
+            parent=self,
+            clustering_words=clustering_words,
+            theme=self.theme,
+            lang=self.lang
+        )
 
     def start_processing(self):
         # 检查文件夹路径是否已设置
@@ -825,6 +964,7 @@ class App(tk.Tk):
         self.research_question_text.config(state=state)
         self.requirements_text.config(state=state)
         self.keywords_text.config(state=state)
+        self.clustering_words_text.config(state=state)
         
         # 锁定数据选择和文件夹设置选项卡
         self.tab_control.tab(1, state=state)
@@ -1354,26 +1494,290 @@ class App(tk.Tk):
         target_dir = self.txt_target_var.get().strip()
         
         if not source_dir:
-            messagebox.showerror("错误", "请选择源文件夹")
+            messagebox.showerror(self.lang.get("error_title", "错误"), self.lang.get("select_source_folder", "请选择源文件夹"))
             return
         
         if not target_dir:
-            messagebox.showerror("错误", "请选择目标文件夹")
+            messagebox.showerror(self.lang.get("error_title", "错误"), self.lang.get("select_target_folder", "请选择目标文件夹"))
             return
         
         if not os.path.exists(source_dir):
-            messagebox.showerror("错误", "源文件夹不存在")
+            messagebox.showerror(self.lang.get("error_title", "错误"), self.lang.get("source_folder_not_exist", "源文件夹不存在"))
             return
         
         try:
             converter = TxtToBibConverter()
-            self.log_message(f"开始转换: {source_dir} -> {target_dir}")
+            self.log_message(self.lang.get("start_conversion", "开始转换: {source_dir} -> {target_dir}").format(source_dir=source_dir, target_dir=target_dir))
             converter.convert_directory(source_dir, target_dir)
-            messagebox.showinfo("完成", "TXT文件转换完成！")
+            messagebox.showinfo(self.lang.get("complete_title", "完成"), self.lang.get("txt_conversion_complete", "TXT文件转换完成！"))
         except Exception as e:
-            error_msg = f"转换过程中出现错误: {str(e)}"
+            error_msg = self.lang.get("conversion_error", "转换过程中出现错误: {error}").format(error=str(e))
             self.log_message(error_msg)
-            messagebox.showerror("错误", error_msg)
+            messagebox.showerror(self.lang.get("error_title", "错误"), error_msg)
+
+
+class DeepSummaryWindow:
+    """深度总结流式显示窗口"""
+    
+    def __init__(self, parent, clustering_words, theme, lang):
+        self.parent = parent
+        self.clustering_words = clustering_words
+        self.theme = theme
+        self.lang = lang
+        
+        # 创建窗口
+        self.window = tk.Toplevel(parent)
+        self.window.title(f"{self.lang.get('deep_summary_title', '深度总结')} - {clustering_words}")
+        self.window.geometry("1000x700")
+        self.window.minsize(800, 600)
+        self.window.configure(bg=self.theme.get_color('bg'))
+        
+        # 设置图标
+        try:
+            icon_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'icon', 'icon.ico')
+            if os.path.exists(icon_path):
+                self.window.iconbitmap(icon_path)
+        except Exception:
+            pass
+        
+        # 创建UI
+        self.setup_ui()
+        
+        # 启动分析
+        self.start_analysis()
+    
+    def setup_ui(self):
+        """设置UI界面"""
+        # 主框架
+        main_frame = ttk.Frame(self.window, padding="15")
+        main_frame.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+        
+        # 标题
+        title_frame = ttk.Frame(main_frame)
+        title_frame.pack(fill=tk.X, pady=(0, 10))
+        
+        title_label = ttk.Label(
+            title_frame,
+            text=f"{self.lang.get('deep_summary_title', '深度总结分析')}",
+            font=('Arial', 14, 'bold')
+        )
+        title_label.pack(side=tk.LEFT)
+        
+        # 关键词显示
+        keywords_label = ttk.Label(
+            title_frame,
+            text=f"{self.lang.get('clustering_keywords', '聚类关键词')}: {self.clustering_words}",
+            font=('Arial', 10),
+            foreground=self.theme.get_color('accent')
+        )
+        keywords_label.pack(side=tk.LEFT, padx=(20, 0))
+        
+        # 进度指示器
+        self.progress_frame = ttk.Frame(main_frame)
+        self.progress_frame.pack(fill=tk.X, pady=(0, 10))
+        
+        self.progress_label = ttk.Label(
+            self.progress_frame,
+            text=self.lang.get('analysis_starting', '正在开始分析...'),
+            font=('Arial', 9)
+        )
+        self.progress_label.pack(side=tk.LEFT)
+        
+        self.progress_bar = ttk.Progressbar(
+            self.progress_frame,
+            mode='indeterminate'
+        )
+        self.progress_bar.pack(side=tk.RIGHT, padx=(10, 0))
+        self.progress_bar.start()
+        
+        # 内容显示区域
+        content_frame = ttk.Frame(main_frame)
+        content_frame.pack(fill=tk.BOTH, expand=True)
+        
+        # 创建滚动文本区域
+        self.content_text = scrolledtext.ScrolledText(
+            content_frame,
+            wrap=tk.WORD,
+            font=('Arial', 11),
+            bg=self.theme.get_color('log_bg'),
+            fg=self.theme.get_color('fg'),
+            insertbackground=self.theme.get_color('accent'),
+            selectbackground=self.theme.get_color('selection'),
+            selectforeground=self.theme.get_color('fg'),
+            relief=tk.FLAT,
+            borderwidth=1
+        )
+        self.content_text.pack(fill=tk.BOTH, expand=True)
+        
+        # 配置文本标签
+        self.content_text.tag_configure('title', font=('Arial', 12, 'bold'), foreground=self.theme.get_color('accent'))
+        self.content_text.tag_configure('subtitle', font=('Arial', 11, 'bold'))
+        self.content_text.tag_configure('keyword', font=('Arial', 10, 'bold'), foreground='#2E7D32')
+        self.content_text.tag_configure('error', foreground='#D32F2F')
+        self.content_text.tag_configure('success', foreground='#388E3C')
+        self.content_text.tag_configure('reasoning', font=('Arial', 9, 'italic'), foreground='#666666', background='#F5F5F5')
+        self.content_text.tag_configure('answer', font=('Arial', 10), foreground='#1976D2')
+        
+        # 按钮框架
+        button_frame = ttk.Frame(main_frame)
+        button_frame.pack(fill=tk.X, pady=(10, 0))
+        
+        
+        # 复制按钮
+        self.copy_button = ttk.Button(
+            button_frame,
+            text=self.lang.get('copy_result', '复制结果'),
+            command=self.copy_result,
+            state='disabled'
+        )
+        self.copy_button.pack(side=tk.LEFT, padx=(10, 0))
+        
+        # 关闭按钮
+        close_button = ttk.Button(
+            button_frame,
+            text=self.lang.get('close_button', '关闭'),
+            command=self.window.destroy
+        )
+        close_button.pack(side=tk.RIGHT)
+        
+        # 重新分析按钮
+        self.retry_button = ttk.Button(
+            button_frame,
+            text=self.lang.get('retry_analysis', '重新分析'),
+            command=self.retry_analysis,
+            state='disabled'
+        )
+        self.retry_button.pack(side=tk.RIGHT, padx=(0, 10))
+        
+        # 储存分析结果
+        self.analysis_result = None
+    
+    def start_analysis(self):
+        """开始分析"""
+        self.content_text.delete(1.0, tk.END)
+        self.content_text.insert(tk.END, f"{self.lang.get('start_deep_analysis', '开始深度分析...')}\n", 'title')
+        self.content_text.insert(tk.END, f"{self.lang.get('clustering_keywords_display', '聚类关键词')}: {self.clustering_words}\n\n")
+        self.content_text.insert(tk.END, f"{self.lang.get('connecting_api', '正在连接DeepSeek API...')}\n")
+        
+        # 添加推理过程和答案的分隔
+        self.reasoning_started = False
+        self.answer_started = False
+        
+        # 流式回调函数
+        def on_stream_chunk(chunk):
+            def update_ui():
+                # 检查是否是推理过程（支持中英文）
+                is_reasoning = chunk.startswith("[推理] ") or chunk.startswith("[Reasoning] ")
+                
+                if is_reasoning:
+                    if not self.reasoning_started:
+                        reasoning_title = self.lang.get('reasoning_process', '推理过程') if self.lang.get('reasoning_process') else '推理过程'
+                        self.content_text.insert(tk.END, f"\n{'='*30} {reasoning_title} {'='*30}\n", 'subtitle')
+                        self.reasoning_started = True
+                    
+                    # 移除标识并显示推理内容
+                    if chunk.startswith("[推理] "):
+                        reasoning_text = chunk[5:]  # 移除 "[推理] " 前缀
+                    else:
+                        reasoning_text = chunk[12:]  # 移除 "[Reasoning] " 前缀
+                    self.content_text.insert(tk.END, reasoning_text, 'reasoning')
+                else:
+                    # 这是最终答案内容
+                    if not self.answer_started and self.reasoning_started:
+                        answer_title = self.lang.get('final_answer', '最终答案') if self.lang.get('final_answer') else '最终答案'
+                        self.content_text.insert(tk.END, f"\n\n{'='*30} {answer_title} {'='*30}\n", 'subtitle')
+                        self.answer_started = True
+                    
+                    self.content_text.insert(tk.END, chunk, 'answer')
+                
+                self.content_text.see(tk.END)
+            self.window.after(0, update_ui)
+        
+        # 完成回调函数
+        def on_completion(result):
+            def update_ui():
+                self.progress_bar.stop()
+                self.progress_frame.pack_forget()
+                
+                if result.get("success"):
+                    self.analysis_result = result
+                    self.content_text.insert(tk.END, "\n\n" + "="*50 + "\n", 'subtitle')
+                    self.content_text.insert(tk.END, f"{self.lang.get('analysis_complete', '分析完成！')}\n", 'success')
+                    
+                    self.copy_button.config(state='normal')
+                else:
+                    self.content_text.insert(tk.END, f"\n{self.lang.get('analysis_failed', '分析失败')}: {result.get('error', self.lang.get('unknown_error', '未知错误'))}\n", 'error')
+                
+                self.retry_button.config(state='normal')
+                self.content_text.see(tk.END)
+            
+            self.window.after(0, update_ui)
+        
+        # 导入并启动流式分析
+        from ..result_summary_tools import result_summary_tools
+        result_summary_tools.generate_deep_summary_stream_async(
+            self.clustering_words,
+            on_stream_chunk,
+            on_completion
+        )
+    
+    def retry_analysis(self):
+        """重新分析"""
+        self.progress_bar.start()
+        self.progress_frame.pack(fill=tk.X, pady=(0, 10), before=self.content_text.master)
+        self.progress_label.config(text=self.lang.get('analysis_restarting', '正在重新开始分析...'))
+        self.copy_button.config(state='disabled')
+        self.retry_button.config(state='disabled')
+        
+        # 重置推理状态
+        self.reasoning_started = False
+        self.answer_started = False
+        
+        self.start_analysis()
+    
+    def copy_result(self):
+        """复制分析结果到剪贴板"""
+        content = self.content_text.get(1.0, tk.END)
+        self.window.clipboard_clear()
+        self.window.clipboard_append(content)
+        self.window.update()  # 确保剪贴板更新
+        messagebox.showinfo(self.lang.get("success_title", "成功"), self.lang.get("result_copied", "结果已复制到剪贴板"))
+    
+    def save_result(self):
+        """保存分析结果"""
+        if not self.analysis_result:
+            messagebox.showwarning(self.lang.get("warning_title", "警告"), self.lang.get("no_result_to_save", "没有可保存的结果"))
+            return
+        
+        # 选择保存位置
+        filename = filedialog.asksaveasfilename(
+            title="保存深度分析结果",
+            defaultextension=".txt",
+            filetypes=[
+                (self.lang.get("text_files", "文本文件"), "*.txt"),
+                (self.lang.get("json_files", "JSON文件"), "*.json"),
+                (self.lang.get("all_files", "所有文件"), "*.*")
+            ],
+            initialname=f"{self.lang.get('deep_analysis_filename', '深度分析')}_{self.clustering_words.replace(' ', '_')}"
+        )
+        
+        if filename:
+            try:
+                content = self.content_text.get(1.0, tk.END)
+                
+                if filename.endswith('.json'):
+                    # 保存为JSON格式
+                    with open(filename, 'w', encoding='utf-8') as f:
+                        json.dump(self.analysis_result, f, ensure_ascii=False, indent=2)
+                else:
+                    # 保存为文本格式
+                    with open(filename, 'w', encoding='utf-8') as f:
+                        f.write(content)
+                
+                messagebox.showinfo(self.lang.get("success_title", "成功"), self.lang.get("result_saved_to", "结果已保存到: {filename}").format(filename=filename))
+            except Exception as e:
+                messagebox.showerror(self.lang.get("error_title", "错误"), self.lang.get("save_failed", "保存失败: {error}").format(error=str(e)))
+
 
 if __name__ == "__main__":
     app = App()

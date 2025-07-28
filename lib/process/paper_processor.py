@@ -7,6 +7,7 @@ from . import data
 from . import search_paper
 from ..log import utils
 from ..config import config_loader as config
+from ..result_summary_tools import result_summary_tools
 import json
 from language import language
 
@@ -180,11 +181,15 @@ def process_papers(rq, keywords, requirements, n, selected_folders=None, year_ra
     
     utils.print_and_log(f"\n{lang['start_processing_papers'].format(count=max_papers)}")
     utils.print_and_log(f"{lang['total_papers'].format(count=paper_count)}")
-    utils.print_and_log(f"{lang['max_parallel_config'].format(count=len(config.API_KEYS))}")
+    
+    # 获取用于处理的API密钥（排除最后两个用于分析的）
+    processing_apis = result_summary_tools.get_processing_apis()
+    utils.print_and_log(f"{lang['max_parallel_config'].format(count=len(processing_apis))}")
+    utils.print_and_log(f"预留 {len(config.API_KEYS) - len(processing_apis)} 个API密钥用于结果分析")
 
     # 将论文索引分配给不同的线程
     paper_indices = list(range(1, max_papers + 1))
-    num_threads = min(len(config.API_KEYS), max_papers)  # 关键代码：线程数取API密钥数和论文数的较小值
+    num_threads = min(len(processing_apis), max_papers)  # 关键代码：线程数取处理API密钥数和论文数的较小值
     batch_size = max_papers // num_threads
     remainder = max_papers % num_threads
     
@@ -224,7 +229,7 @@ def process_papers(rq, keywords, requirements, n, selected_folders=None, year_ra
                     research_direction,
                     keywords,
                     requirements,  # 添加requirements参数
-                    config.API_KEYS[i],  # 为每个线程分配不同的API密钥
+                    processing_apis[i],  # 为每个线程分配不同的处理API密钥（排除分析用的）
                     i + 1,
                     result_file_path,
                     log_file_path,
