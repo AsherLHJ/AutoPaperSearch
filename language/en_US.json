@@ -3,7 +3,7 @@
     "menu_help": "Help",
     "menu_about": "About",
     "about_title": "About",
-    "about_text": "SearchPaper - Academic Paper Relevance Screening Tool\n\nVersion: 1.1\nAuthors: Hongji Li, Ziming Li\n\nContact Email:\nHongji Li: hli546@connect.hkust-gz.edu.cn\nZiming Li: Zli578@connect.hkust-gz.edu.cn\n\n© 2025 All Rights Reserved",
+    "about_text": "SearchPaper - Academic Paper Relevance Screening Tool\n\nVersion: 1.1\nAuthors: Hongji Li, Ziming Li, Songchen Zhou\n\nContact Email:\nHongji Li: hli546@connect.hkust-gz.edu.cn\nZiming Li: Zli578@connect.hkust-gz.edu.cn\nSongchen Zhou: lesliesczhou@hkust-gz.edu.cn\n\n© 2025 All Rights Reserved",
     "config_label": "Configuration",
     "log_label": "Log",
     "data_selection_tab": "Data Selection",
