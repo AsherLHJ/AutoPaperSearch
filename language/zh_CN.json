@@ -3,7 +3,7 @@
     "menu_help": "帮助",
     "menu_about": "关于",
     "about_title": "关于",
-    "about_text": "SearchPaper - 学术论文相关性筛选工具\n\n版本: 1.1\n作者: 李宏基，栗梓明\n\n联系邮箱:\n李弘基: hli546@connect.hkust-gz.edu.cn\n栗梓明: Zli578@connect.hkust-gz.edu.cn\n\n© 2025 版权所有",
+    "about_text": "SearchPaper - 学术论文相关性筛选工具\n\n版本: 1.1\n作者: 李宏基，栗梓明，周嵩晨\n\n联系邮箱:\n李弘基: hli546@connect.hkust-gz.edu.cn\n栗梓明: Zli578@connect.hkust-gz.edu.cn\n周嵩晨: lesliesczhou@hkust-gz.edu.cn\n\n© 2025 版权所有",
     "config_label": "配置",
     "log_label": "日志",
     "data_selection_tab": "选择数据",

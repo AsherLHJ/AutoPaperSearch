@@ -19,7 +19,7 @@ import colorsys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 from language import language
 
-# 作者: 李弘基(hli546@connect.hkust-gz.edu.cn)，栗梓明(zli578@connect.hkust-gz.edu.cn)
+# 作者: 李弘基(hli546@connect.hkust-gz.edu.cn)，栗梓明(zli578@connect.hkust-gz.edu.cn)，周嵩晨（lesliesczhou@hkust-gz.edu.cn）
 # 创建日期: 2025
 # 版本: 1.1
 
