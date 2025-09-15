@@ -13,3 +13,4 @@ Test
 dist
 .exe
 dist/AutoPaperSearch.exe
+*.exe
