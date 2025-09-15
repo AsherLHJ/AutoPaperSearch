@@ -12,3 +12,4 @@ build
 Test
 dist
 .exe
+dist/AutoPaperSearch.exe
