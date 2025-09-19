@@ -58,9 +58,14 @@ def process_paper_batch(paper_indices, rq, keywords, requirements, api_key, thre
                     # 新增：同步记录到 CSV（无表头，列顺序：title, result, reason, URL）
                     url_value = extract_url_from_entry(entry)
                     import csv
+                    # 组装来源信息：来源文件夹 + 原始 .bib 文件名，形式为 "folder/file"
+                    source_folder = paper.get('source_folder', '')
+                    source_file = paper.get('source_file', '')
+                    source = f"{source_folder}/{source_file}" if (source_folder or source_file) else ""
                     with open(yon_csv_file_path, 'a', encoding='utf-8-sig', newline='') as yon_csv_file:
                         writer = csv.writer(yon_csv_file)
-                        writer.writerow([title, relevance.strip().upper(), reason, url_value])
+                        # 调整列顺序：title, source, result, reason, URL
+                        writer.writerow([title, source, relevance.strip().upper(), reason, url_value])
                 
                 # 如果相关，则添加到结果文件中
                 if relevance.strip().upper() == 'Y':
