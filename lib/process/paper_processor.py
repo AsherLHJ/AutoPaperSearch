@@ -10,7 +10,7 @@ from ..config import config_loader as config
 import json
 from language import language
 
-def process_paper_batch(paper_indices, rq, keywords, requirements, api_key, thread_id, result_file_path, log_file_path, yon_log_file_path, total_papers):
+def process_paper_batch(paper_indices, rq, keywords, requirements, api_key, thread_id, result_file_path, log_file_path, yon_log_file_path, yon_csv_file_path, total_papers):
     """
     处理一批论文的函数，由单个线程执行
     """
@@ -55,6 +55,17 @@ def process_paper_batch(paper_indices, rq, keywords, requirements, api_key, thre
                         yon_log_file.write(f'    "result": "{relevance.strip().upper()}",\n')
                         yon_log_file.write(f'    "reason": "{reason}"\n')
                         yon_log_file.write('}\n\n')
+                    # 新增：同步记录到 CSV（无表头，列顺序：title, result, reason, URL）
+                    url_value = extract_url_from_entry(entry)
+                    import csv
+                    # 组装来源信息：来源文件夹 + 原始 .bib 文件名，形式为 "folder/file"
+                    source_folder = paper.get('source_folder', '')
+                    source_file = paper.get('source_file', '')
+                    source = f"{source_folder}/{source_file}" if (source_folder or source_file) else ""
+                    with open(yon_csv_file_path, 'a', encoding='utf-8-sig', newline='') as yon_csv_file:
+                        writer = csv.writer(yon_csv_file)
+                        # 调整列顺序：title, source, result, reason, URL
+                        writer.writerow([title, source, relevance.strip().upper(), reason, url_value])
                 
                 # 如果相关，则添加到结果文件中
                 if relevance.strip().upper() == 'Y':
@@ -114,6 +125,10 @@ def process_papers(rq, keywords, requirements, n, selected_folders=None, year_ra
     
     # 创建Y/N判断结果日志文件路径
     yon_log_file_path = os.path.join(log_folder, f"Log_YoN_{timestamp}.txt")
+    # 新增：创建对应的 CSV 文件（无表头）
+    yon_csv_file_path = os.path.join(log_folder, f"Overall_{timestamp}.csv")
+    with open(yon_csv_file_path, 'w', encoding='utf-8') as _f:
+        pass
     
     # 准备查询信息
     folder_info = ", ".join(selected_folders) if selected_folders else "All folders"
@@ -229,6 +244,7 @@ def process_papers(rq, keywords, requirements, n, selected_folders=None, year_ra
                     result_file_path,
                     log_file_path,
                     yon_log_file_path,  # 添加Y/N日志文件路径
+                    yon_csv_file_path,  # 新增：CSV 文件路径
                     max_papers
                 )
                 future_to_thread[future] = i + 1
@@ -291,3 +307,25 @@ def process_papers(rq, keywords, requirements, n, selected_folders=None, year_ra
     # 关闭完整日志文件
     if data.full_log_file:
         data.full_log_file.close()
+
+# 函数：extract_url_from_entry（新增）
+# 作用：从 BibTeX entry 中提取 url 或 doi（无 url 时），若为 doi 则拼接 https://doi.org/
+# 位置建议：放在文件顶部 import 之后任意位置（函数级别）
+def extract_url_from_entry(entry: str) -> str:
+    import re
+    try:
+        # 优先匹配 url 字段
+        m = re.search(r'(?mi)^\s*url\s*=\s*[{"]([^}"]+)[}"]', entry)
+        if m:
+            return m.group(1).strip().rstrip(',')
+        # 其次匹配 doi 字段
+        m = re.search(r'(?mi)^\s*doi\s*=\s*[{"]([^}"]+)[}"]', entry)
+        if m:
+            doi = m.group(1).strip().rstrip(',')
+            # 若 doi 已是 http(s) 链接则直接返回，否则加前缀
+            if doi.lower().startswith('http://') or doi.lower().startswith('https://'):
+                return doi
+            return f"https://doi.org/{doi}"
+    except Exception:
+        pass
+    return ""
